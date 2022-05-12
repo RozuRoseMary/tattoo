@@ -4,10 +4,12 @@ import Header from "./Header";
 
 function Layout() {
   return (
-    <div>
-      <Header />
+    <div className="*">
+      <div className="header">
+        <Header />
+      </div>
       <div
-        className="
+        className="bg-gradient-to-b from-lightPink to-blue
       "
       >
         <Outlet />
