@@ -2,11 +2,13 @@ import React from "react";
 
 function FlashCard() {
   return (
-    <div className="bg-black text-white rounded-md w-44 h-44 m-4 overflow-hidden ">
+    <div className="bg-black text-white rounded-md w-56 h-52 m-4 overflow-hidden ">
       {/* <img src="1500.jpg" alt="" /> */}
-      <div className="picture bg-mint w-44 h-28 "></div>
-      <span>Name</span>
-      <span>THB</span>
+      <div className="picture bg-mint w-56 h-36 "></div>
+      <div className="flex justify-between mx-2 my-1">
+        <span>Name</span>
+        <span>THB 13,000</span>
+      </div>
       <span>@ArtistName</span>
     </div>
   );

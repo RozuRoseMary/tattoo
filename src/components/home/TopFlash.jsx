@@ -1,13 +1,12 @@
 import React from "react";
 import FlashCard from "../ui/FlashCard";
+import ViewAll from "./ViewAll";
 
 function TopFlash() {
   return (
-    <div>
-      <div className="text ">
-        <span>Top Flash Tattoo likes</span>
-        <span>VIEW ALL</span>
-      </div>
+    <div className="py-6">
+      <ViewAll>Top Flash Tattoo likes</ViewAll>
+
       <div className="cards-cont flex flex-row justify-around flex-wrap">
         <FlashCard />
         <FlashCard />

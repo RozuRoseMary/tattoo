@@ -1,22 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import DropdownUser from "./ui/DropdownUser";
+import Login from "./users/Login";
 
-const pathname = window.location.pathname;
-const textHover = "p-7 hover:text-pink cursor-pointer";
+function Header(props) {
+  const pathname = window.location.pathname;
+  const textHover = "p-7 hover:text-pink cursor-pointer";
 
-function Header() {
+  const [dropdown, setDropdownUser] = useState(false);
+
+  const showDropdownUser = () => setDropdownUser(!dropdown);
+
   return (
-    <nav className="bg-blackGray text-white ">
+    <nav className="bg-black-gray text-white text-2xl relative">
       {/* text */}
-      <div className="p-4 flex justify-between content-center">
+      <div className="p-4 flex justify-between ">
         <div className="left flex">
-          <div className="username flex ">
-            <img
+          <div className="user-profile flex">
+            <div className="bg-mint w-10 h-10 rounded-full mt-5"></div>
+            {/* <img
               src="./imgs/sugarGlider.jpg"
               className="fex flex-col content-center"
-            />
-            <p className={textHover}>Username</p>
+            /> */}
+            <div className="username flex" onClick={showDropdownUser}>
+              <div className="p-7 flex hover:text-pink cursor-pointer  ">
+                <p className="">Username</p>
+                <div className="ml-5 ">
+                  <i className="fa-solid fa-sort-down"></i>
+                </div>
+              </div>
+              {dropdown && <DropdownUser textHover={textHover} />}
+            </div>
           </div>
+
+          {/* LINE */}
+          <div className="mx-5 h-[100%] w-0.5 bg-light-gray"></div>
 
           <div className="pages flex content-center">
             <Link to="/home" className={textHover}>
@@ -28,14 +46,15 @@ function Header() {
           </div>
         </div>
 
+        {/* RIGTH : FILTER & SEARCH */}
         <div className="right flex ">
           <div className={textHover}>
             <i className="fa-solid fa-filter"></i>
           </div>
-          <div className="flex">
+          <div className="flex h-5 ">
             <input
               type="text"
-              className="px-2.5 rounded-md bg-lightPink placeholder-white max-h-6 "
+              className="px-2.5 py-5 mt-5 rounded-md bg-light-pink placeholder-white"
               placeholder="Search..."
             />
           </div>
@@ -44,4 +63,5 @@ function Header() {
     </nav>
   );
 }
+
 export default Header;
