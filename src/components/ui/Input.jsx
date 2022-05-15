@@ -5,7 +5,7 @@ function Input(props) {
     <input
       type="text"
       placeholder={props.children}
-      className="bg-black text-white border-solid "
+      className="my-[1.5rem] mx-5 block bg-black placeholder-gray border-solid border border-gray rounded p-2"
     />
   );
 }

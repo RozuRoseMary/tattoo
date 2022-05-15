@@ -14,7 +14,10 @@ function Layout() {
   };
   return (
     <div className="*">
-      <div className="header">{checkPath() || <Header />}</div>
+      <div className="header">
+        {/* {checkPath() && <Header />} */}
+        <Header />
+      </div>
       <div
         className="bg-gradient-to-b from-light-pink to-blue text-white
       "

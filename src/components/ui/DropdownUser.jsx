@@ -5,7 +5,7 @@ function DropdownUser(props) {
   const { textHover } = props;
 
   return (
-    <div className="w-[250px] absolute left-[27px] top-[115px] bg-black-gray border-solid border-2 border-light-gray rounded ">
+    <div className="w-[200px] absolute left-[35px] top-[105px] bg-black-gray border-solid border-2 border-light-gray rounded ">
       <div className="flex flex-col">
         <Link to="/profile">
           <div className="my-5 ">
@@ -15,7 +15,7 @@ function DropdownUser(props) {
         <div className="border-[1px] border-light-gray "></div>
         <Link to="/login">
           <div className="my-5">
-            <span className={textHover}>Logout</span>
+            <span className={textHover}>Log out</span>
           </div>
         </Link>
       </div>
