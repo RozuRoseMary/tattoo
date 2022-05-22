@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Product from "./Product";
 import productImg from "../imgs/phoenix.jpg";
 
-function FlashCard() {
+function FlashCard({ image, tattName, price, tattooistName }) {
   const [show, setShow] = useState(false);
 
   const showProductDetail = () => {
@@ -15,14 +14,14 @@ function FlashCard() {
         // onClick={showProductDetail}
         className="bg-black text-white rounded-md w-56 h-52 m-4 "
       >
-        <div className="picture bg-mint w-56 h-36 overflow-hidden">
-          <img src={productImg} className="" />
+        <div className="picture bg-mint w-56 h-36 rounded-t-md overflow-hidden">
+          <img src={image} className="" />
         </div>
         <div className="flex justify-between mx-2 my-1">
-          <span>Name</span>
-          <span>THB 13,000</span>
+          <span>{tattName}</span>
+          <span>THB {price}</span>
         </div>
-        <span>@ArtistName</span>
+        <span>@{tattooistName}</span>
         {/* {show && <Product />} */}
       </div>
     </Link>

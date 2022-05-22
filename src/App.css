@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .text-price {
+    @apply my-2 text-pink;
+  }
+
+  .text-username {
+    @apply my-2 text-light-pink;
+  }
+
+  .btn {
+    @apply my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50;
+  }
+}

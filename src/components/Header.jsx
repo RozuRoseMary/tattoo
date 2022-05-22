@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DropdownUser from "./ui/DropdownUser";
+import Filter from "./ui/Filter";
 import userImg from "./imgs/sugarGlider.jpg";
 
 function Header() {
@@ -12,7 +13,7 @@ function Header() {
   const showDropdownUser = () => setDropdownUser(!dropdown);
 
   return (
-    <nav className="bg-black-gray text-white text-md relative">
+    <nav className="bg-black text-white text-md relative">
       {/* text */}
       <div className="p-4 flex justify-between ">
         <div className="left flex">
@@ -35,9 +36,9 @@ function Header() {
           <div className="mx-5 h-[100%] w-0.5 bg-light-gray"></div>
 
           {/* HOME & CHAT */}
-          <div className="pages flex content-center">
+          <div className="pages flex content-center ">
             <Link to="/home" className={textHover}>
-              <i className="fa-solid fa-house"></i>
+              <i className="fa-solid fa-house active:text-mint focus:text-mint target:text-mint"></i>
             </Link>
             <Link to="/chat" className={textHover}>
               <i className="fa-solid fa-comment-dots"></i>
@@ -48,7 +49,7 @@ function Header() {
         {/* RIGHT : FILTER & SEARCH */}
         <div className="right flex ">
           <div className={textHover}>
-            <i className="fa-solid fa-filter"></i>
+            <i className="fa-solid fa-filter" onClick={() => {}}></i>
           </div>
           <div className="flex h-5 ">
             <input
