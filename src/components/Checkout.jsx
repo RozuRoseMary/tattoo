@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BlackContainer from "./ui/BlackContainer";
 import Button from "./ui/Button";
 
 function Checkout() {
   return (
     <>
-      <div className="bg-black-gray mx-[7rem]">
+      <div className="black-container">
         <div className="p-10">
           <div className="top">
             <div className="top_left">
@@ -26,11 +27,13 @@ function Checkout() {
 
         <div className="w-[auto] h-[0.08rem] my-2 bg-light-gray"></div>
 
-        <div className="p-10 bottom calendar ">
-          <div className="flex flex-column justify-center">
-            <p> JAN 2022 </p>
+        <>
+          <div className="p-10 bottom calendar ">
+            <div className="flex flex-column justify-center">
+              <p> JAN 2022 </p>
+            </div>
           </div>
-        </div>
+        </>
 
         <div className="w-[auto] h-[0.08rem] mt-2 bg-light-gray"></div>
 
@@ -48,7 +51,9 @@ function Checkout() {
                 <span className="mr-5">Total:</span>
                 <span className="text-price">THB 13,000</span>
               </div>
-              <button className="btn ">Confirm</button>
+              <Link to="/confirm_payment">
+                <button className="btn ">Confirm</button>
+              </Link>
             </div>
           </div>
         </div>

@@ -7,17 +7,15 @@ import TattooistProfile from "./tattooist/TattooistProfile";
 function Profile() {
   return (
     <>
-      <BlackContainer>
-        <BuyerProfile />
-      </BlackContainer>
+      <BuyerProfile />
+
       <hr />
-      <BlackContainer>
-        <TattooerProfile />
-      </BlackContainer>
+
+      <TattooerProfile />
+
       <hr />
-      <BlackContainer>
-        <TattooistProfile />
-      </BlackContainer>
+
+      <TattooistProfile />
     </>
   );
 }

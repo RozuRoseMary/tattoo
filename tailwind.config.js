@@ -28,6 +28,10 @@ module.exports = {
       gray: "#8492a6",
       "gray-light": "#d3dce6",
     },
+    backgroundClip: {
+      border: "border-box",
+      text: "text",
+    },
     extend: {},
   },
   plugins: [],

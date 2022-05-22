@@ -14,4 +14,22 @@
   .btn {
     @apply my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50;
   }
+
+  .line-x {
+    @apply w-[auto] h-[0.08rem] my-2 bg-light-gray;
+  }
+
+  .black-center-container {
+    @apply my-[100px] py-[30px] bg-black rounded-md shadow-lg;
+  }
+
+  .black-container {
+    @apply bg-black-gray mx-[7rem];
+  }
+}
+
+@layer utilities {
+  .shadow-indigo-500 {
+    /* --tw-shadow-color: #6366f1; */
+  }
 }

@@ -9,7 +9,7 @@ import Home from "../components/pages/Home";
 import Chat from "../components/pages/Chat";
 import Product from "../components/products/Product";
 import Checkout from "../components/Checkout";
-import Payment from "../components/Payment";
+import ConfirmPayment from "../components/ConfirmPayment";
 import Paid from "../components/Paid";
 
 function Router() {
@@ -26,7 +26,7 @@ function Router() {
       <Route path="product" element={<Product />}></Route>
       {/* checkout ? ..... */}
       <Route path="checkout" element={<Checkout />}></Route>
-      <Route path="payment" element={<Payment />}></Route>
+      <Route path="confirm_payment" element={<ConfirmPayment />}></Route>
       <Route path="paid" element={<Paid />}></Route>
       {/* <Route index element={<Home />}></Route> */}
       <Route path="*" element={<Navigate to="home" />}></Route>
