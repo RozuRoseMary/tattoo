@@ -3,6 +3,26 @@
 @tailwind utilities;
 
 @layer components {
+  .profile-container {
+    @apply bg-black-gray mx-11;
+  }
+
+  .line-y {
+    @apply w-[auto] h-[1.5px] my-2 bg-light-gray;
+  }
+
+  .line-x {
+    @apply w-[1.5px] h-[auto] mx-10 bg-light-gray;
+  }
+
+  .profile-pic {
+    @apply rounded-full w-[10rem] mr-5;
+  }
+
+  .text-header {
+    @apply my-2;
+  }
+
   .text-price {
     @apply my-2 text-pink;
   }
@@ -11,7 +31,30 @@
     @apply my-2 text-light-pink;
   }
 
+  .text-username-lg {
+    @apply my-2 text-lg font-semibold text-light-pink;
+  }
+
+  .text-detail {
+    @apply my-2 text-gray-light;
+  }
+
   .btn {
-    @apply my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50;
+    @apply w-[100%] my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50;
+  }
+
+  .btn-as-text {
+    @apply hover:text-pink p-5;
+  }
+
+  .btn-as-text-active {
+    @apply p-5 bg-pink
+    /* @apply bg-gradient-to-b from-dark-pink to-dark-blue ; */;
+  }
+}
+
+@layer utilities {
+  i {
+    @apply mr-5;
   }
 }

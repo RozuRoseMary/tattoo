@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import DropdownUser from "./ui/DropdownUser";
-import Filter from "./ui/Filter";
-import userImg from "./imgs/sugarGlider.jpg";
+import DropdownUser from "./DropdownUser";
 
 function Header() {
   const textHover = "p-7 hover:text-pink cursor-pointer";
@@ -19,8 +17,12 @@ function Header() {
         <div className="left flex">
           <div className="user-profile flex">
             <div className="bg-mint w-10 h-10 rounded-full mt-5 overflow-hidden">
-              <img src={userImg} className="fex flex-col content-center" />
+              <img
+                src={`https://images.unsplash.com/photo-1607408315636-9bbf355e7ff4`}
+                className="fex flex-col content-center"
+              />
             </div>
+
             <div className="username flex" onClick={showDropdownUser}>
               <div className="p-7 flex hover:text-pink cursor-pointer  ">
                 <p className="">Username</p>

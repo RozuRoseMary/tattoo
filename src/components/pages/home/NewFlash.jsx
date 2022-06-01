@@ -1,7 +1,7 @@
 import React from "react";
-import FlashCard from "../ui/FlashCard";
+import FlashCard from "../../ui/FlashCard";
 import ViewAll from "./ViewAll";
-import productImg from "../imgs/phoenix.jpg";
+import productImg from "../../imgs/phoenix.jpg";
 
 function NewFlash() {
   const flashData = [

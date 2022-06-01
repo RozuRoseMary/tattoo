@@ -24,7 +24,7 @@ function Checkout() {
           </div>
         </div>
 
-        <div className="w-[auto] h-[0.08rem] my-2 bg-light-gray"></div>
+        <div className="line-y"></div>
 
         <div className="p-10 bottom calendar ">
           <div className="flex flex-column justify-center">
@@ -32,7 +32,7 @@ function Checkout() {
           </div>
         </div>
 
-        <div className="w-[auto] h-[0.08rem] mt-2 bg-light-gray"></div>
+        <div className="line-y"></div>
 
         <div className="payment ">
           <div className="flex">
@@ -41,7 +41,7 @@ function Checkout() {
               <p className="text-price">iBanking</p>
             </div>
 
-            <div className="w-[0.08rem] h-[auto] mx-2 bg-light-gray"></div>
+            <div className="w-[1.5px] h-[auto] mx-2 bg-light-gray"></div>
 
             <div className="right-payment p-10 w-[50%] ">
               <div className="">

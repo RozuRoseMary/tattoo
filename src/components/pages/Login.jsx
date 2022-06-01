@@ -7,7 +7,7 @@ import Input from "../ui/Input";
 function Login() {
   return (
     <div className="flex justify-center">
-      <div className=" my-[100px] px-[50px] py-[30px] bg-black rounded-md shadow-lg shadow-indigo-500/40">
+      <div className="min-w-[30vw] my-[100px] px-[50px] py-[30px] bg-black rounded-md shadow-lg shadow-indigo-500/40">
         <Link to="/home">
           <img src={logo} alt="" className="w-[3.5rem] m-[auto]" />
         </Link>
@@ -22,9 +22,7 @@ function Login() {
         </Link>
 
         <div className="flex justify-center">
-          <Link to="/home">
-            <Button>Log in</Button>
-          </Link>
+          <button className="btn">Log in</button>
         </div>
 
         <Link to="/register">

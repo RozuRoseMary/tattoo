@@ -1,5 +1,5 @@
 import React from "react";
-import FlashCard from "../ui/FlashCard";
+import FlashCard from "../../ui/FlashCard";
 import ViewAll from "./ViewAll";
 
 function TopFlash() {

@@ -1,8 +1,8 @@
 import React from "react";
-import NewFlash from "../home/NewFlash";
-import NewPost from "../home/NewPost";
-import TopFlash from "../home/TopFlash";
-import TopPost from "../home/TopPost";
+import NewFlash from "./home/NewFlash";
+import NewPost from "./home/NewPost";
+import TopFlash from "./home/TopFlash";
+import TopPost from "./home/TopPost";
 
 function Home() {
   return (
