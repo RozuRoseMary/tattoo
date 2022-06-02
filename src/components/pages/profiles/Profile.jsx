@@ -8,14 +8,6 @@ function Profile() {
   return (
     <>
       <BuyerProfile />
-      {/* <hr />
-      <BlackContainer>
-        <TattooerProfile />
-      </BlackContainer>
-      <hr />
-      <BlackContainer>
-        <TattooistProfile />
-      </BlackContainer> */}
     </>
   );
 }

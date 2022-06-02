@@ -39,6 +39,18 @@
     @apply my-2 text-gray-light;
   }
 
+  .text-error {
+    @apply text-red text-right flex grow justify-end;
+  }
+
+  .input {
+    @apply w-[100%] my-[1.5rem] block bg-black placeholder-gray border-solid border border-gray rounded p-2;
+  }
+
+  .select {
+    @apply bg-black border-solid border border-gray rounded p-2;
+  }
+
   .btn {
     @apply w-[100%] my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50;
   }

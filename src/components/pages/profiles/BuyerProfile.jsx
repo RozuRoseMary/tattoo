@@ -4,7 +4,7 @@ import FlashCard from "../../ui/FlashCard";
 
 function BuyerProfile() {
   return (
-    <div className="profile-container h-[100vh]">
+    <div className="profile-container">
       <div className="flex p-11">
         <img
           src="https://images.unsplash.com/photo-1607408315636-9bbf355e7ff4"
@@ -37,7 +37,18 @@ function BuyerProfile() {
 
       <div className="w-[auto] h-[1.5px] mb-2 bg-light-gray"></div>
 
-      <div className="footer-like-container flex justify-around">
+      {/* <div className="footer-like-container flex justify-around flex-wrap"> */}
+      <div className="footer-like-container grid grid-cols-4 gap-11 place-items-center">
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
+        <FlashCard />
         <FlashCard />
         <FlashCard />
         <FlashCard />

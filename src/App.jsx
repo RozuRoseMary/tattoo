@@ -5,8 +5,8 @@ import Router from "./routes/Router";
 function App() {
   return (
     <>
-      <Header />
-      <div className="bg-gradient-to-b from-light-pink to-blue text-white">
+      {/* <Header /> */}
+      <div className="h-[100%] bg-gradient-to-b from-light-pink to-blue text-white">
         <Router />
       </div>
     </>

@@ -4,16 +4,16 @@ import NewPost from "./home/NewPost";
 import TopFlash from "./home/TopFlash";
 import TopPost from "./home/TopPost";
 
-function Home() {
+function HomePage() {
   return (
     // <div className="bg-blue-500">
     <div className="">
       <TopFlash />
       <NewFlash />
-      <TopPost />
-      <NewPost />
+      {/* <TopPost /> */}
+      {/* <NewPost /> */}
     </div>
   );
 }
 
-export default Home;
+export default HomePage;

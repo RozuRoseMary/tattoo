@@ -1,49 +1,87 @@
 import React, { useState } from "react";
-import Input from "../ui/Input";
+import { useNavigate } from "react-router-dom";
+import { object, string } from "yup";
+import { registerApi } from "../../api/auth";
+import { useAuth } from "../../context/AuthContext";
+import { Form } from "../form/Form";
+import Input from "../form/Input";
+import SubmitButton from "../form/SubmitButton";
 
 function RegisterForm() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("Client");
+  const { register } = useAuth();
+  const navigate = useNavigate();
+
+  const schema = object({
+    firstName: string().required("First name is require."),
+    lastName: string().required("Last name is require."),
+    displayName: string(),
+    phoneNumber: string(),
+    email: string().email(),
+    username: string().required("Username is require."),
+    password: string().required("Password is require."),
+    confirmPassword: string().required("Confirm password is require."),
+  });
+
+  const lists = [
+    { name: "firstName", nameShow: "First Name", type: "text" },
+    { name: "lastName", nameShow: "Last Name", type: "text" },
+    { name: "phoneNumber", nameShow: "Phone Number", type: "text" },
+    { name: "email", nameShow: "Email", type: "text" },
+    { name: "username", nameShow: "Username", type: "text" },
+    { name: "password", nameShow: "Password", type: "text" },
+    { name: "confirmPassword", nameShow: "Confirm Password", type: "text" },
+  ];
+
+  const handleRegisterSubmit = ({
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    username,
+    password,
+    confirmPassword,
+  }) => {
+    register({
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      username,
+      password,
+      confirmPassword,
+      role,
+    });
+  };
 
   return (
-    <form>
-      <Input value={firstName}>First Name</Input>
-      <Input value={lastName}>Last Name</Input>
-      <Input value={displayName}>Display Name</Input>
-      <Input value={phoneNumber}>Phone Number</Input>
-      <Input>Email</Input>
-      <Input>Username</Input>
-      <Input>Password</Input>
-      <Input>Confirm Password</Input>
+    <Form schema={schema}>
+      {lists.map((el) => (
+        <Input
+          key={el.name}
+          name={el.name}
+          type={el.type}
+          nameShow={el.nameShow}
+        />
+      ))}
 
       <div className="m-5 text-gray ">
-        <label for="role" className="mr-3">
-          Choose a role :{" "}
+        <label htmlFor="role" className="mr-3">
+          Choose a role :
         </label>
         <select
           id="role"
           name="role"
-          className="bg-black border-solid border border-gray rounded p-2"
+          className="select"
+          onChange={(e) => setRole(e.target.value)}
         >
           <option value="Client">Client</option>
           <option value="Tattooist">Tattooist</option>
           <option value="Tattooer">Tattooer</option>
         </select>
       </div>
-
-      <div className="flex justify-center">
-        <button className="btn" type="submit">
-          Register
-        </button>
-      </div>
-    </form>
+      <SubmitButton onClick={handleRegisterSubmit}>Register</SubmitButton>
+    </Form>
   );
 }
 

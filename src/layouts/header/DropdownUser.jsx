@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 function DropdownUser(props) {
   const { textHover } = props;
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <div className="w-[200px] absolute left-[35px] top-[105px] bg-black-gray border-solid border-2 border-light-gray rounded ">
@@ -15,7 +21,9 @@ function DropdownUser(props) {
         <div className="border-[1px] border-light-gray "></div>
         <Link to="/login">
           <div className="my-5">
-            <span className={textHover}>Log out</span>
+            <span className={textHover} onClick={handleLogout}>
+              Log out
+            </span>
           </div>
         </Link>
       </div>
