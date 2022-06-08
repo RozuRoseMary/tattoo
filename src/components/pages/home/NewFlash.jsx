@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FlashCard from "../../ui/FlashCard";
 import ViewAll from "./ViewAll";
 import productImg from "../../imgs/phoenix.jpg";
+import { getAllProductApi } from "../../../api/product";
 
 function NewFlash() {
+  const [allNewProduct, setAllNewProduct] = useState([]);
+
   const flashData = [
     {
       image: productImg,
@@ -24,6 +27,12 @@ function NewFlash() {
       tattooistName: "iiiii",
     },
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getAllProductApi();
+    };
+  }, []);
 
   return (
     <div className="bg-black-gray py-6">

@@ -24,13 +24,38 @@ function RegisterForm() {
   });
 
   const lists = [
-    { name: "firstName", nameShow: "First Name", type: "text" },
-    { name: "lastName", nameShow: "Last Name", type: "text" },
-    { name: "phoneNumber", nameShow: "Phone Number", type: "text" },
+    {
+      name: "firstName",
+      nameShow: "First Name (require)",
+      type: "text",
+    },
+    {
+      name: "lastName",
+      nameShow: "Last Name (require)",
+      type: "text",
+    },
+    {
+      name: "displayName",
+      nameShow: "Display Name",
+      type: "text",
+    },
+    {
+      name: "phoneNumber",
+      nameShow: "Phone Number",
+      type: "text",
+    },
     { name: "email", nameShow: "Email", type: "text" },
-    { name: "username", nameShow: "Username", type: "text" },
-    { name: "password", nameShow: "Password", type: "text" },
-    { name: "confirmPassword", nameShow: "Confirm Password", type: "text" },
+    {
+      name: "username",
+      nameShow: "Username (require)",
+      type: "text",
+    },
+    { name: "password", nameShow: "Password (require)", type: "text" },
+    {
+      name: "confirmPassword",
+      nameShow: "Confirm Password (require)",
+      type: "text",
+    },
   ];
 
   const handleRegisterSubmit = ({
@@ -62,6 +87,7 @@ function RegisterForm() {
           name={el.name}
           type={el.type}
           nameShow={el.nameShow}
+          require={el.require}
         />
       ))}
 

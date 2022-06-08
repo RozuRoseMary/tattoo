@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import { useAuth } from "../../context/AuthContext";
 import { Form } from "../form/Form";
@@ -24,6 +24,15 @@ function LoginForm() {
     <Form schema={schema}>
       <Input name="username" type="text" nameShow="Username" />
       <Input name="password" type="text" nameShow="Password" />
+
+      <div className="">
+        <Link to="/forget_password">
+          <p className="mr-1 flex justify-end text-[0.75rem] text-gray underline hover:text-white">
+            Forget Password
+          </p>
+        </Link>
+      </div>
+
       <SubmitButton onClick={handleLoginSubmit}>Login</SubmitButton>
     </Form>
   );

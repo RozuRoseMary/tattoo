@@ -1,5 +1,6 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { FaStarOfLife } from "react-icons/fa";
 
 function Input({ name, type, nameShow }) {
   const {
@@ -20,14 +21,16 @@ function Input({ name, type, nameShow }) {
               >
                 {name}
               </label>
-              <input
-                placeholder={nameShow}
-                type={type}
-                name={name}
-                onChange={onChange}
-                value={value}
-                className="input"
-              />
+              <div className="flex ">
+                <input
+                  placeholder={nameShow}
+                  type={type}
+                  name={name}
+                  onChange={onChange}
+                  value={value}
+                  className="input relative"
+                />
+              </div>
             </div>
           );
         }}

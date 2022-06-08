@@ -19,8 +19,17 @@
     @apply rounded-full w-[10rem] mr-5;
   }
 
+  .icon-header {
+    @apply p-7 hover:text-[#c35d84] cursor-pointer;
+    /* @apply p-7 hover:text-pink cursor-pointer; */
+  }
+
+  .icon-header-active {
+    @apply p-7 text-pink cursor-pointer;
+  }
+
   .text-header {
-    @apply my-2;
+    @apply my-2 text-lg;
   }
 
   .text-price {
@@ -39,12 +48,20 @@
     @apply my-2 text-gray-light;
   }
 
+  .text-require {
+    @apply text-red;
+  }
+
   .text-error {
-    @apply text-red text-right flex grow justify-end;
+    @apply text-red text-right flex grow justify-start;
   }
 
   .input {
     @apply w-[100%] my-[1.5rem] block bg-black placeholder-gray border-solid border border-gray rounded p-2;
+  }
+
+  .input-textarea {
+    @apply w-[500px] bg-black text-gray border-gray rounded p-2;
   }
 
   .select {

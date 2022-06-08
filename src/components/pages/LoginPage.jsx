@@ -7,22 +7,20 @@ import Input from "../ui/Input";
 
 function LoginPage() {
   return (
-    <div className="flex justify-center">
-      <div className="max-w-[50vw] my-[100px] px-[50px] py-[30px] bg-black rounded-md shadow-lg shadow-indigo-500/40">
-        <Link to="/home">
-          <img src={logo} alt="" className="w-[3.5rem] m-[auto]" />
-        </Link>
+    <div className="flex justify-center h-[100vh] ">
+      <div className="grid content-between  max-w-[50vw] my-[100px] px-[50px] py-[30px] bg-black rounded-md shadow-lg shadow-indigo-500/40">
+        <div className="mt-8">
+          <Link to="/home">
+            <img src={logo} alt="" className="w-[3.5rem] m-[auto]" />
+          </Link>
+        </div>
+        <span className="text-header flex justify-center ">Login</span>
 
         <LoginForm />
 
-        <div className="flex justify-between">
+        <div className="flex justify-center mb-8">
           <Link to="/register">
             <p className=" text-gray underline hover:text-white ">Register</p>
-          </Link>
-          <Link to="/forget_password">
-            <p className=" text-gray underline hover:text-white">
-              Forget Password
-            </p>
           </Link>
         </div>
       </div>

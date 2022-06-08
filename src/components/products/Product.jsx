@@ -14,7 +14,7 @@ function Product() {
           <p className="text-price">THB 13,000</p>
           <p className="text-username">@ArtistName</p>
           <Link to="/checkout">
-            <i class="my-2 fa-solid fa-cart-plus text-light-pink"></i>
+            <i className="my-2 fa-solid fa-cart-plus text-light-pink"></i>
           </Link>
           <p className="mmy-2 text-gray">Body Part</p>
         </div>

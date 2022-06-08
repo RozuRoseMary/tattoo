@@ -5,7 +5,7 @@ function MenuItem({ title, to, icon, active }) {
   return (
     <div className={` ${active ? "btn-as-text-active" : "btn-as-text"}`}>
       <Link to={to}>
-        <i class={icon}></i>
+        <i className={icon}></i>
         {title}
       </Link>
     </div>

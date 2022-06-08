@@ -1,0 +1,14 @@
+import axios from "../config/axios";
+
+export const getAllProductApi = () => axios.get("/products/getAllProduct");
+
+export const getProductByUserIdApi = (userId) =>
+  axios.get("/products/" + userId);
+
+export const createProductApi = (input) => axios.post("/products", input);
+
+export const updateProductApi = (productId, input) =>
+  axios.patch("/products/" + productId, input);
+
+export const deleteProductApi = (productId) =>
+  axios.delete("/products/" + productId);
