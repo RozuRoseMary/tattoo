@@ -30,17 +30,25 @@ function ProductList() {
 
   return (
     <>
-      {products.map((el) => (
-        <FlashCard
-          key={el.id}
-          title={el.title}
-          price={el.price}
-          image={el.image}
-          like={el.like}
-          tattooist={el.Tattooist}
-          tattooer={el.Tattooer}
-        />
-      ))}
+      {products.length > 0 ? (
+        products?.map((el) => (
+          <FlashCard
+            key={el.id}
+            id={el.id}
+            title={el.title}
+            price={el.price}
+            image={el.image}
+            like={el.like}
+            tattooist={el.Tattooist}
+            tattooer={el.Tattooer}
+            tattooistId={el.tattooistId}
+          />
+        ))
+      ) : (
+        <div className="flex justify-center mt-14 text-big">
+          This user has no product.
+        </div>
+      )}
     </>
   );
 }

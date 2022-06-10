@@ -1,17 +1,31 @@
 import React from "react";
 import MenuList from "./MenuList";
-import { HiPlusCircle } from "react-icons/hi";
+import Modal from "../../components/ui/Modal";
+import { useAuth } from "../../context/AuthContext";
+import { useLocation } from "react-router-dom";
 
 function SubHeader() {
+  const { user } = useAuth();
+  const { pathname } = useLocation();
+  const isUserLogin = user.id === +pathname.split("/")[2];
+
+  const handleAddItem = () => {};
+
   return (
     <div className="flex justify-between ">
       <MenuList />
 
       <div className="flex justify-center align-middle ">
-        <div className="btn-as-text">
-          <HiPlusCircle className="inline mr-4" />
-          <span>Add Picture</span>
-        </div>
+        {isUserLogin && (
+          <Modal
+            id="btn-modal"
+            btnStyle={" btn-as-text "}
+            btnSize="text-1rem"
+            icon="fa-solid fa-circle-plus"
+            title="Add Picture"
+            onSave={handleAddItem}
+          ></Modal>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { getUserByIdApi } from "../api/user";
 import { useAuth } from "./AuthContext";
 
@@ -7,13 +8,25 @@ const UserContext = createContext();
 function UserContextProvider({ children }) {
   const [userProfile, setUserProfile] = useState(null);
 
-  const getUserById = async (userId) => {
-    const res = await getUserByIdApi(userId);
+  // useEffect(() => {
+  //   const fetchUserById = async () => {
+  //     try {
+  //       const res = await getUserByIdApi();
+  //       setUserProfile(res.data.user);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //     return fetchUserById;
+  //   };
+  // }, []);
+
+  const getUserById = async (input) => {
+    const res = await getUserByIdApi(input);
     setUserProfile(res.data.user);
   };
 
   return (
-    <UserContext.Provider value={{ userProfile, getUserById }}>
+    <UserContext.Provider value={{ userProfile, getUserByIdApi }}>
       {children}
     </UserContext.Provider>
   );

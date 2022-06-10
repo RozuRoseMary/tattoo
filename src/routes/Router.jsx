@@ -29,7 +29,7 @@ function Router() {
             <Route path="booking" element={<ProfilePage />}></Route>
             <Route path="location" element={<ProfilePage />}></Route>
           </Route>
-          <Route path="product" element={<Product />}></Route>
+          <Route path="product/:productId" element={<Product />}></Route>
           <Route path="checkout" element={<Checkout />}></Route>
           <Route path="payment" element={<Payment />}></Route>
           <Route path="paid" element={<Paid />}></Route>

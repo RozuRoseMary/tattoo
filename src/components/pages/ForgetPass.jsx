@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../ui/Button";
 import Input from "../ui/Input";
 
 function ForgetPass() {
@@ -14,7 +13,7 @@ function ForgetPass() {
 
           <div className="flex justify-center">
             <Link to="/reset_password">
-              <Button>Send email</Button>
+              <button className="btn">Send email</button>
             </Link>
           </div>
 

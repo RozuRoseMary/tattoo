@@ -1,21 +1,36 @@
-import React, { createContext, useContext } from "react";
-import { getProductByUserIdApi } from "../api/product";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { getAllProductApi, updateProductApi } from "../api/product";
 
 const ProductContext = createContext();
 
 function ProductContextProvider({ children }) {
-  const fetchProduct = async () => {
-    try {
-      const res = await getProductByUserIdApi(4);
-      console.log(res.data.products);
-    } catch (err) {
-      console.log(err);
-    }
+  const [loading, setLoading] = useState(false);
+  const [productTitle, setProductTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const [allProduct, setAllProduct] = useState(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await getAllProductApi();
+        setAllProduct(res.data.products);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    return fetchProduct;
+  }, []);
+
+  const updateProduct = async (productId, input) => {
+    const res = await updateProductApi(productId, input);
+    console.log(res.data.product);
   };
-  // fetchProduct();
 
   return (
-    <ProductContext.Provider value={{ fetchProduct }}>
+    <ProductContext.Provider
+      value={{ allProduct, updateProduct, setDescription }}
+    >
       {children}
     </ProductContext.Provider>
   );

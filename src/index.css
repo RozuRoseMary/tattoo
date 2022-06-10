@@ -1,3 +1,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .profile-container {
+    @apply bg-black-gray mx-11;
+  }
+
+  .product-container {
+    @apply bg-black-gray mx-56;
+  }
+
+  .line-y {
+    @apply w-[auto] h-[1.5px] my-2 bg-light-gray;
+  }
+
+  .line-x {
+    @apply w-[1.5px] h-[auto] mx-10 bg-light-gray;
+  }
+
+  .profile-pic {
+    @apply rounded-full w-[10rem] mr-5;
+  }
+
+  .icon-header {
+    @apply p-7 hover:text-[#c35d84] cursor-pointer;
+    /* @apply p-7 hover:text-pink cursor-pointer; */
+  }
+
+  .icon-header-active {
+    @apply p-7 text-pink cursor-pointer;
+  }
+
+  .text-header {
+    @apply my-2 text-[1.5rem];
+  }
+
+  .text-big {
+    @apply my-2 text-[2rem];
+  }
+
+  .text-price {
+    @apply my-2 text-pink;
+  }
+
+  .text-username {
+    @apply my-2 text-light-pink;
+  }
+
+  .text-username-lg {
+    @apply my-2 text-[1.5rem] font-semibold text-light-pink;
+  }
+
+  .text-detail {
+    @apply my-2 text-gray-light;
+  }
+
+  .text-require {
+    @apply text-red;
+  }
+
+  .text-error {
+    @apply text-red text-right flex grow justify-start;
+  }
+
+  .input {
+    @apply w-[100%] my-[1.5rem] block bg-black placeholder-gray border-solid border border-gray rounded p-2;
+  }
+
+  .input-textarea {
+    @apply max-w-[250px] bg-black text-gray border-gray rounded p-2;
+  }
+
+  .select {
+    @apply bg-black border-solid border border-gray rounded p-2;
+  }
+
+  .btn {
+    @apply w-[100%] my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50;
+  }
+
+  .btn-as-text {
+    @apply hover:text-pink p-5;
+  }
+
+  .btn-as-text-active {
+    @apply p-5 bg-pink
+    /* @apply bg-gradient-to-b from-dark-pink to-dark-blue ; */;
+  }
+}
+
+@layer utilities {
+  i {
+    @apply mr-5;
+  }
+}

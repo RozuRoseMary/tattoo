@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/UserContext";
 import MenuItem from "./MenuItem";
 
 function MenuList() {
   const { user } = useAuth();
+  const { userProfile, getUserByIdApi } = useUser();
   const { pathname } = useLocation();
-
-  const {
-    user: { id },
-  } = useAuth();
+  const userId = pathname.split("/")[2];
 
   // * CLIENT
   const menuClient = [
@@ -29,22 +28,22 @@ function MenuList() {
   const menuTattooist = [
     {
       title: "Flash Available",
-      to: `/profile/${user.id}/products`,
+      to: `/profile/${userId}/products`,
       icon: "fa-solid fa-basket-shopping",
     },
     {
       title: "Posts",
-      to: `/profile/${user.id}/posts`,
+      to: `/profile/${userId}/posts`,
       icon: "fa-solid fa-images",
     },
     {
       title: "Booking",
-      to: `/profile/${user.id}/booking`,
+      to: `/profile/${userId}/booking`,
       icon: "fa-solid fa-calendar-check",
     },
     {
       title: "Location",
-      to: `/profile/${user.id}/location`,
+      to: `/profile/${userId}/location`,
       icon: "fa-solid fa-location-dot",
     },
   ];

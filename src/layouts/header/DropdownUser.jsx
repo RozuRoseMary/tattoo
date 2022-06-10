@@ -5,10 +5,6 @@ import { useAuth } from "../../context/AuthContext";
 function DropdownUser() {
   const { user, logout } = useAuth();
 
-  // const handleLogout = () => {
-  //   logout();
-  // };
-
   return (
     <div className="w-[200px] absolute left-[35px] top-[105px] bg-black-gray border-solid border-2 border-light-gray rounded ">
       <div className="flex flex-col">

@@ -16,7 +16,7 @@ function RegisterForm() {
     firstName: string().required("First name is require."),
     lastName: string().required("Last name is require."),
     displayName: string(),
-    phoneNumber: string(),
+    phoneNumber: string().require("Phone number is require"),
     email: string().email(),
     username: string().required("Username is require."),
     password: string().required("Password is require."),
@@ -41,7 +41,7 @@ function RegisterForm() {
     },
     {
       name: "phoneNumber",
-      nameShow: "Phone Number",
+      nameShow: "Phone Number (require)",
       type: "text",
     },
     { name: "email", nameShow: "Email", type: "text" },

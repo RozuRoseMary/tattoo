@@ -1,8 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Spinner from "./Spinner";
 
-function UserIcon({ containerSize }) {
+function UserIcon({ src, containerSize, getUser }) {
   const { user } = useAuth();
 
   return (
@@ -13,7 +14,7 @@ function UserIcon({ containerSize }) {
     >
       {user ? (
         <img
-          src={user.profilePicture}
+          src={src}
           className={`"flex-col content-center" ${user ? "fex" : "hidden"}`}
         />
       ) : (

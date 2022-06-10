@@ -19,25 +19,9 @@ function UserHeader() {
 
   return (
     <>
-      {/* {!user ? ( */}
-      {/* {localStorage.length === 0 ? (
-        <>
-          <h1>WAITING FOR PAGE TO LOAD</h1>
-          <Spinner />
-        </>
-      ) : ( */}
       <div className="user-profile" onClick={handleLogin}>
         <div className="flex">
-          {/* <Link to="/login" className="flex"> */}
-          {/* <div className="bg-mint w-10 h-10 rounded-full mt-5 overflow-hidden">
-              <img
-                src={user.profilePicture}
-                className={`"flex-col content-center" ${
-                  user ? "fex" : "hidden"
-                }`}
-              />
-            </div> */}
-          <UserIcon />
+          <UserIcon src={user?.profilePicture} />
 
           <div className="username flex " onClick={showDropdownUser}>
             <div

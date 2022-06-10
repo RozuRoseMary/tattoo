@@ -7,6 +7,7 @@ const SubmitButton = ({ onClick, children, disabled = false, style }) => {
     <div className="grid grid-cols-2 gap-1">
       <div className="col-start-1 col-end-3">
         <button
+          type="submit"
           className="btn"
           onClick={handleSubmit((data) => {
             onClick(data, reset);

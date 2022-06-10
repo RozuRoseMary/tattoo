@@ -1,10 +1,9 @@
 import React from "react";
 import BlackContainer from "./ui/BlackContainer";
-import Button from "./ui/Button";
 
 function Checkout() {
   return (
-    <>
+    <form>
       <div className="bg-black-gray mx-[7rem]">
         <div className="p-10">
           <div className="top">
@@ -53,7 +52,7 @@ function Checkout() {
           </div>
         </div>
       </div>
-    </>
+    </form>
   );
 }
 

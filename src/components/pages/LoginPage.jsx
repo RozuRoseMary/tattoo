@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../auth/LoginForm";
 import logo from "../imgs/0needle.png";
-import Button from "../ui/Button";
-import Input from "../ui/Input";
 
 function LoginPage() {
   return (

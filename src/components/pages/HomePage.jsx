@@ -1,4 +1,7 @@
 import React from "react";
+import Alert from "../ui/Alert";
+import Modal from "../ui/Modal";
+import Spinner from "../ui/Spinner";
 import NewFlash from "./home/NewFlash";
 import NewPost from "./home/NewPost";
 import TopFlash from "./home/TopFlash";
@@ -6,12 +9,14 @@ import TopPost from "./home/TopPost";
 
 function HomePage() {
   return (
-    // <div className="bg-blue-500">
     <div className="">
       <TopFlash />
-      <NewFlash />
+      {/* <NewFlash /> */}
       {/* <TopPost /> */}
       {/* <NewPost /> */}
+      {/* <Modal /> */}
+      {/* <Spinner />
+      <Alert /> */}
     </div>
   );
 }
