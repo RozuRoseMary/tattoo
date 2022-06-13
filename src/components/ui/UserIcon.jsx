@@ -18,7 +18,7 @@ function UserIcon({ src, containerSize, getUser }) {
           className={`"flex-col content-center" ${user ? "fex" : "hidden"}`}
         />
       ) : (
-        <Spinner />
+        <div />
       )}
     </div>
   );

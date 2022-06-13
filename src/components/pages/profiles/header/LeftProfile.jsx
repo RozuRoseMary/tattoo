@@ -6,7 +6,7 @@ function LeftProfile({ edit, getUser, setDisplayName }) {
   return (
     <div className="right-profile-header ml-10 max-w-[200px] flex flex-col grow">
       {edit || (
-        <p className={`text-username-lg`}>
+        <p className={`text-header text-username`}>
           @{getUser.displayName || getUser.firstName + " " + getUser.lastName}
         </p>
       )}

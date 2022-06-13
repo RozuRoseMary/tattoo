@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import {
   getUserByIdApi,
@@ -12,7 +12,6 @@ import Spinner from "../../ui/Spinner";
 import Modal from "../../ui/Modal";
 import SubHeader from "../../../layouts/subheader/SubHeader";
 import UserIcon from "../../../components/ui/UserIcon";
-import UpdatePicture from "../../ui/UpdatePicture";
 import Input from "../../ui/Input";
 import LeftProfile from "./header/LeftProfile";
 import RightProfile from "./header/RightProfile";
@@ -21,6 +20,9 @@ import axios from "axios";
 
 function ProfileContainer() {
   const { userId } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
   const [getUser, setGetUser] = useState(null);
@@ -59,6 +61,7 @@ function ProfileContainer() {
       // * update profile picture
       const formData = new FormData();
       formData.append("profilePicture", image);
+
       await updateProfilePic(formData);
       setImage(null);
 
@@ -114,20 +117,22 @@ function ProfileContainer() {
                 setAboutMe={setAboutMe}
               />
 
-              <div className="flex ">
-                <button className="btn w-[120px]" onClick={editProfile}>
-                  {edit ? "Save" : "Your Account"}
-                </button>
-
-                {edit && (
-                  <button
-                    className="btn w-[120px] ml-10"
-                    onClick={handleCancel}
-                  >
-                    Cancel
+              {user && (
+                <div className="flex ">
+                  <button className="btn w-[120px]" onClick={editProfile}>
+                    {edit ? "Save" : "Your Account"}
                   </button>
-                )}
-              </div>
+
+                  {edit && (
+                    <button
+                      className="btn w-[120px] ml-10"
+                      onClick={handleCancel}
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

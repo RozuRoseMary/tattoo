@@ -5,11 +5,13 @@ function Modal({
   id,
   btnStyle,
   btnSize,
+  btnSubmit,
   position,
   icon,
   title,
   onSave,
   onCancel,
+  btnToggle,
 }) {
   return (
     <div>
@@ -21,7 +23,7 @@ function Modal({
           "px-6 py-2.5  bg-deep-blue   text-white  font-medium  text-xs leading-tight  uppercase  rounded shadow-md  hover:bg-deeper-blue hover:shadow-lg    focus:shadow-lg focus:outline-none focus:ring-0  active:bg-deeper-blue active:shadow-lg transition duration-150 ease-in-out"
         }
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target={btnToggle ? "#" + btnToggle : "#exampleModal"}
       >
         <span className={btnSize ? btnSize : " text-big"}>
           <i className={icon}></i>
@@ -30,8 +32,8 @@ function Modal({
       </button>
 
       <div
-        className="modal fade fixed top-28 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="exampleModal"
+        className="modal fade fixed mb-5 top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        id={btnToggle || "exampleModal"}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -57,49 +59,22 @@ function Modal({
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray rounded-b-md">
               <button
                 type="button"
-                className="px-6
-          py-2.5
-          bg-deep-blue
-          text-white
-          font-medium
-          text-xs
-          leading-tight
-          uppercase
-          rounded
-          shadow-md
-          hover:bg-deeper-blue hover:shadow-lg
-          focus:bg-deeper-blue focus:shadow-lg focus:outline-none focus:ring-0
-          active:bg-deeper-blue active:shadow-lg
-          transition
-          duration-150
-          ease-in-out"
+                className="px-6 py-2.5 bg-deep-blue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-deeper-blue hover:shadow-lg focus:bg-deeper-blue focus:shadow-lg focus:outline-none focus:ring-0 active:bg-deeper-blue active:shadow-lg transition duration-150 ease-in-out"
                 data-bs-dismiss="modal"
                 onClick={onCancel}
               >
                 Close
               </button>
-              <button
-                type="button"
-                className="px-6 py-2.5
-      bg-pink
-      text-white
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-dark-pink hover:shadow-lg
-      focus:bg-dark-pink focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-dark-pink active:shadow-lg
-      transition
-      duration-150
-      ease-in-out
-      ml-5"
-                onClick={onSave}
-              >
-                Save changes
-              </button>
+
+              {onSave && (
+                <button
+                  type="button"
+                  className="px-6 py-2.5 bg-pink  text-white  font-medium  text-xs  leading-tight uppercase  rounded  shadow-md hover:bg-dark-pink hover:shadow-lg  focus:bg-dark-pink focus:shadow-lg focus:outline-none focus:ring-0 active:bg-dark-pink active:shadow-lg transition  duration-150  ease-in-out  ml-5"
+                  onClick={onSave}
+                >
+                  {btnToggle || "Save changes"}
+                </button>
+              )}
             </div>
           </div>
         </div>

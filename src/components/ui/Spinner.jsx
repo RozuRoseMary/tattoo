@@ -2,11 +2,11 @@ import React from "react";
 
 function Spinner() {
   return (
-    <div className="flex justify-center z-50 ">
-      <div className="w-64 text-center p-4 bg-gradient-to-r from-black to-blue-500 opacity-75">
+    <div className="z-50 fixed top-1/2 left-[40%]">
+      <div className="w-64 text-center p-4 bg-gradient-to-r from-deeper-blue to-blue opacity-75">
         <svg
           role="status"
-          className="inline w-10 h-10 mr-2 text-gray animate-spin dark:text-gray fill-deep-blue "
+          className="inline w-10 h-10 mr-2 text-white-gray animate-spin dark:text-gray fill-blue "
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ function Spinner() {
             fill="currentFill"
           />
         </svg>
-        <span className="text-deep-blue text-[2rem] ml-3 ">Loading...</span>
+        <span className="text-deep-white text-[2rem] ml-3 ">Loading...</span>
       </div>
     </div>
   );

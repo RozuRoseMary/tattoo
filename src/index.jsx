@@ -8,18 +8,21 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext";
 import { UserContextProvider } from "./context/UserContext";
 import { ProductContextProvider } from "./context/ProductContext";
+import { LoadingContextProvider } from "./context/LoadingContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthContextProvider>
-        <UserContextProvider>
-          <ProductContextProvider>
-            <App />
-          </ProductContextProvider>
-        </UserContextProvider>
-      </AuthContextProvider>
+      <LoadingContextProvider>
+        <AuthContextProvider>
+          <UserContextProvider>
+            <ProductContextProvider>
+              <App />
+            </ProductContextProvider>
+          </UserContextProvider>
+        </AuthContextProvider>
+      </LoadingContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

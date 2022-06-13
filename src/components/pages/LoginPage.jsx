@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../auth/LoginForm";
-import logo from "../imgs/0needle.png";
+import logo from "../../assets/imgs/0needle.png";
 
 function LoginPage() {
   return (

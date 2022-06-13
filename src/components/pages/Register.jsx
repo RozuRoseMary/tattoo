@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import RegisterForm from "../auth/RegisterForm";
-import logo from "../imgs/0needle.png";
+import logo from "../../assets/imgs/0needle.png";
 
 function Register() {
   return (

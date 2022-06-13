@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useLoading } from "../../../context/LoadingContext";
 import { useProduct } from "../../../context/ProductContext";
 import FlashCard from "../../ui/FlashCard";
 import Spinner from "../../ui/Spinner";
 import ViewAll from "./ViewAll";
 
 function TopFlash() {
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useLoading();
   const { allProduct } = useProduct();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function TopFlash() {
 
       <div
         // className="cards-cont flex flex-row justify-between flex-wrap
-        className="cards-cont grid grid-cols-4 gap-2 mx-5"
+        className="cards-cont grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2  mx-5 breakpoints"
       >
         {allProduct?.map((el) => (
           <FlashCard

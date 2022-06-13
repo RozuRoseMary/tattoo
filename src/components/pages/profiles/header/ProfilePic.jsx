@@ -31,8 +31,8 @@ function ProfilePic({ edit, getUser, image, setImage }) {
             className="hidden"
             onChange={(e) => handlePicture(e)}
           />
-          <label for="file" className="btn cursor-pointer">
-            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+          <label htmlFor="file" className="btn cursor-pointer">
+            <i className="fa-solid fa-arrow-up-from-bracket"></i>
             Choose File
           </label>
         </div>

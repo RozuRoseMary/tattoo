@@ -5,6 +5,9 @@ export const getAllProductApi = () => axios.get("/products/getAllProduct");
 export const getProductByUserIdApi = (userId) =>
   axios.get("/products/" + userId);
 
+export const getProductByIdApi = (productId) =>
+  axios.get("/products/oneProduct/" + productId);
+
 export const createProductApi = (input) => axios.post("/products", input);
 
 export const updateProductApi = (productId, input) =>

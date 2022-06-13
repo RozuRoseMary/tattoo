@@ -1,17 +1,21 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { getAllProductApi, updateProductApi } from "../api/product";
+import {
+  createProductApi,
+  deleteProductApi,
+  getAllProductApi,
+  getProductByIdApi,
+  updateProductApi,
+} from "../api/product";
 
 const ProductContext = createContext();
 
 function ProductContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
-  const [productTitle, setProductTitle] = useState("");
-  const [description, setDescription] = useState("");
-
   const [allProduct, setAllProduct] = useState(null);
+  const [flashProduct, setFlashProduct] = useState(null);
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProducts = async () => {
       try {
         const res = await getAllProductApi();
         setAllProduct(res.data.products);
@@ -19,17 +23,44 @@ function ProductContextProvider({ children }) {
         console.log(err);
       }
     };
-    return fetchProduct;
-  }, []);
+    return fetchProducts;
+  }, [flashProduct]);
+
+  const createProduct = async (input) => {
+    try {
+      await createProductApi(input);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const updateProduct = async (productId, input) => {
-    const res = await updateProductApi(productId, input);
-    console.log(res.data.product);
+    try {
+      await updateProductApi(productId, input);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteProduct = async (productId) => {
+    try {
+      await deleteProductApi(productId);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <ProductContext.Provider
-      value={{ allProduct, updateProduct, setDescription }}
+      value={{
+        allProduct,
+        flashProduct,
+        setFlashProduct,
+        // getProductById,
+        createProduct,
+        updateProduct,
+        deleteProduct,
+      }}
     >
       {children}
     </ProductContext.Provider>

@@ -11,12 +11,11 @@ function HomePage() {
   return (
     <div className="">
       <TopFlash />
+      {/* <Alert /> */}
       {/* <NewFlash /> */}
       {/* <TopPost /> */}
       {/* <NewPost /> */}
       {/* <Modal /> */}
-      {/* <Spinner />
-      <Alert /> */}
     </div>
   );
 }
