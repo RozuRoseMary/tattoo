@@ -25,13 +25,13 @@ function Checkout() {
 
         <div className="line-y"></div>
 
-        <div className="p-10 bottom calendar ">
+        {/* <div className="p-10 bottom calendar ">
           <div className="flex flex-column justify-center">
             <p> JAN 2022 </p>
           </div>
-        </div>
+        </div> */}
 
-        <div className="line-y"></div>
+        {/* <div className="line-y"></div> */}
 
         <div className="payment ">
           <div className="flex">

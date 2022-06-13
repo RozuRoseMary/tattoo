@@ -31,11 +31,7 @@ function MenuList() {
       to: `/profile/${userId}/products`,
       icon: "fa-solid fa-basket-shopping",
     },
-    {
-      title: "Posts",
-      to: `/profile/${userId}/posts`,
-      icon: "fa-solid fa-images",
-    },
+
     {
       title: "Booking",
       to: `/profile/${userId}/booking`,
@@ -54,11 +50,6 @@ function MenuList() {
       title: "Flash Available",
       to: "/profile/products",
       icon: "fa-solid fa-basket-shopping",
-    },
-    {
-      title: "Posts",
-      to: "/profile/posts",
-      icon: "fa-solid fa-images",
     },
   ];
 

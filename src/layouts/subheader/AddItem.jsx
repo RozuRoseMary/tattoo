@@ -66,7 +66,7 @@ function AddItem() {
     <div className="flex justify-center align-middle ">
       {isUserLogin && (
         <Modal
-          id="btn-modal"
+          id="add-item"
           btnStyle={" btn-as-text "}
           btnSize="text-1rem"
           icon="fa-solid fa-circle-plus"

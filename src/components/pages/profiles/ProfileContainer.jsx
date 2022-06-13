@@ -17,6 +17,7 @@ import LeftProfile from "./header/LeftProfile";
 import RightProfile from "./header/RightProfile";
 import ProfilePic from "./header/ProfilePic";
 import axios from "axios";
+import DetailProfile from "./header/DetailProfile";
 
 function ProfileContainer() {
   const { userId } = useParams();
@@ -122,6 +123,8 @@ function ProfileContainer() {
                   <button className="btn w-[120px]" onClick={editProfile}>
                     {edit ? "Save" : "Your Account"}
                   </button>
+
+                  {edit || <DetailProfile />}
 
                   {edit && (
                     <button

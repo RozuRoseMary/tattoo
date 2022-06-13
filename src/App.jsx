@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./layouts/header/Header";
 import Router from "./routes/Router";
 import "tw-elements";

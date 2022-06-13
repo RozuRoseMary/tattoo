@@ -9,3 +9,6 @@ export const updateProfilePic = (pictureFile) =>
 
 export const updateProfileApi = (input) =>
   axios.patch("/users/updateProfile", input);
+
+//   export const updateProfilePic = (pictureFile) =>
+//   axios.patch("/users/updateProfilePic", pictureFile);

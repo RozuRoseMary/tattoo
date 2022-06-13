@@ -5,7 +5,7 @@ import Register from "../components/pages/Register";
 import ForgetPass from "../components/pages/ForgetPass";
 import ResetPass from "../components/pages/ResetPass";
 import Home from "../components/pages/HomePage";
-import Product from "../components/products/Product";
+import Product from "../components/pages/products/Product";
 import Checkout from "../components/Checkout";
 import Payment from "../components/Payment";
 import Paid from "../components/Paid";
