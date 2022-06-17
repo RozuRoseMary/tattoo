@@ -22,7 +22,10 @@ module.exports = {
         "dark-pink": "#B04E73",
         pink: "#c35d84",
         "light-pink": "#b88099",
+        "baby-pink": "#f0c0d0",
+        "dark-mint": "#31C9C7",
         mint: "#67d4c7",
+        "light-mint": "#9ACCCA",
         purple: "#7e5bef",
         orange: "#ff7849",
         green: "#13ce66",
@@ -43,6 +46,18 @@ module.exports = {
       boxShadow: {
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
         md: "0 5px 13px 0 rgba(0,0,0,0.41)",
+      },
+      backdropBlur: {
+        xs: "2px",
+        sm: "4px",
+        md: "8px",
+      },
+      rotate: {
+        200: "200deg",
+        240: "240deg",
+      },
+      backdrop: {
+        invert: "invert",
       },
     },
   },

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { object, string } from "yup";
-import { registerApi } from "../../api/auth";
 import { useAuth } from "../../context/AuthContext";
 import { Form } from "../form/Form";
 import Input from "../form/Input";
@@ -10,13 +8,12 @@ import SubmitButton from "../form/SubmitButton";
 function RegisterForm() {
   const [role, setRole] = useState("Client");
   const { register } = useAuth();
-  const navigate = useNavigate();
 
   const schema = object({
     firstName: string().required("First name is require."),
     lastName: string().required("Last name is require."),
     displayName: string(),
-    phoneNumber: string().require("Phone number is require"),
+    phoneNumber: string().required("Phone number is require."),
     email: string().email(),
     username: string().required("Username is require."),
     password: string().required("Password is require."),
@@ -50,11 +47,11 @@ function RegisterForm() {
       nameShow: "Username (require)",
       type: "text",
     },
-    { name: "password", nameShow: "Password (require)", type: "text" },
+    { name: "password", nameShow: "Password (require)", type: "password" },
     {
       name: "confirmPassword",
       nameShow: "Confirm Password (require)",
-      type: "text",
+      type: "password",
     },
   ];
 

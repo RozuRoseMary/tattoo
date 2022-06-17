@@ -1,4 +1,6 @@
 import React from "react";
+import { useError } from "../../context/ErrorContext";
+import Alert from "./Alert";
 
 function Modal({
   children,
@@ -6,6 +8,7 @@ function Modal({
   btnStyle,
   btnSize,
   btnSubmit,
+  btnTitle,
   position,
   icon,
   title,
@@ -13,6 +16,8 @@ function Modal({
   onCancel,
   btnToggle,
 }) {
+  const { error, setError } = useError();
+
   return (
     <div>
       <button
@@ -20,14 +25,14 @@ function Modal({
         type="button"
         className={
           btnStyle ||
-          "px-6 py-2.5  bg-deep-blue   text-white  font-medium  text-xs leading-tight  uppercase  rounded shadow-md  hover:bg-deeper-blue hover:shadow-lg    focus:shadow-lg focus:outline-none focus:ring-0  active:bg-deeper-blue active:shadow-lg transition duration-150 ease-in-out"
+          "my-5 px-6 py-2.5  bg-deep-blue   text-white  font-medium  text-xs leading-tight  uppercase  rounded shadow-md  hover:bg-deeper-blue hover:shadow-lg    focus:shadow-lg focus:outline-none focus:ring-0  active:bg-deeper-blue active:shadow-lg transition duration-150 ease-in-out"
         }
         data-bs-toggle="modal"
         data-bs-target={btnToggle ? "#" + btnToggle : "#exampleModal"}
       >
-        <span className={btnSize ? btnSize : " text-big"}>
-          <i className={icon}></i>
-          {title}
+        <span className={btnSize ? btnSize : " text-[1.2rem]"}>
+          {icon && <i className={icon}></i>}
+          {btnTitle && <span> {btnTitle}</span>}
         </span>
       </button>
 
@@ -38,7 +43,7 @@ function Modal({
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog relative w-auto pointer-events-none">
+        <div className=" modal-dialog relative w-auto pointer-events-none">
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-black bg-clip-padding rounded-md outline-none text-current">
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray rounded-t-md">
               <h5
@@ -57,6 +62,14 @@ function Modal({
             </div>
             <div className="modal-body relative p-4 ">{children}</div>
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray rounded-b-md">
+              {error && (
+                <Alert
+                  title={error}
+                  icon="fa-solid fa-circle-exclamation"
+                  onCLick={() => setError(false)}
+                />
+              )}
+
               <button
                 type="button"
                 className="px-6 py-2.5 bg-deep-blue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-deeper-blue hover:shadow-lg focus:bg-deeper-blue focus:shadow-lg focus:outline-none focus:ring-0 active:bg-deeper-blue active:shadow-lg transition duration-150 ease-in-out"

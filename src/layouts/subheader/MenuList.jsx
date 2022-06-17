@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { useUser } from "../../context/UserContext";
 import MenuItem from "./MenuItem";
 
 function MenuList() {
   const { user } = useAuth();
-  const { userProfile, getUserByIdApi } = useUser();
+  const { userId } = useParams();
   const { pathname } = useLocation();
-  const userId = pathname.split("/")[2];
 
-  // * CLIENT
-  const menuClient = [
-    {
-      title: "Liked Flash",
-      to: `/profile/like/products`,
-      icon: "fa-solid fa-star",
-    },
-    {
-      title: "Liked Posts",
-      to: "/profile/like/posts",
-      icon: "fa-solid fa-heart",
-    },
-  ];
+  let isUser;
+  if (user.id === +userId) {
+    isUser = true;
+  } else isUser = false;
 
   // * TATTOOIST
   const menuTattooist = [
@@ -44,15 +33,6 @@ function MenuList() {
     },
   ];
 
-  // * TATTOOER
-  const menuTattooer = [
-    {
-      title: "Flash Available",
-      to: "/profile/products",
-      icon: "fa-solid fa-basket-shopping",
-    },
-  ];
-
   return (
     <div className="middle flex justify-start">
       {menuTattooist.map((el) => (
@@ -62,8 +42,18 @@ function MenuList() {
           to={el.to}
           icon={el.icon}
           active={pathname === el.to}
+          isUser={el.isUser}
         />
       ))}
+
+      {isUser && (
+        <MenuItem
+          title={"Statement"}
+          to={`/profile/${userId}/statement`}
+          icon={"fa-solid fa-coins"}
+          active={pathname === `/profile/${userId}/statement`}
+        />
+      )}
     </div>
   );
 }

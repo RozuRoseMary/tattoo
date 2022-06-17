@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { useLoading } from "../../../context/LoadingContext";
 import { useProduct } from "../../../context/ProductContext";
 import InputFile from "../../ui/InputFile";
@@ -7,13 +6,12 @@ import Modal from "../../ui/Modal";
 
 function UpdateProduct() {
   const { flashProduct, updateProduct } = useProduct();
-  const { loading, setLoading } = useLoading();
-  const { productId } = useParams();
+  const { setLoading } = useLoading();
 
   const [changePrice, setChangePrice] = useState(true);
   const [imageProduct, setImageProduct] = useState(null);
   const [productTitle, setProductTitle] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
+  const [productPrice, setProductPrice] = useState(flashProduct?.price);
   const [productDes, setProductDes] = useState("");
 
   const handleImage = (e) => {
@@ -22,17 +20,16 @@ function UpdateProduct() {
     }
   };
 
-  const saveUpdate = async (id, image, title, price, description) => {
+  const saveUpdate = async () => {
     setLoading(true);
 
     const formData = new FormData();
-    formData.set("image", imageProduct);
+    formData.append("image", imageProduct);
     formData.append("title", productTitle);
     formData.append("price", productPrice);
     formData.append("description", productDes);
 
-    await updateProduct(+productId, formData);
-    window.location.reload();
+    await updateProduct(flashProduct?.id, formData);
   };
 
   const cancelUpdate = () => {};
@@ -43,12 +40,17 @@ function UpdateProduct() {
         <Modal
           position="flex justify-end"
           icon="fa-solid fa-pen-to-square"
+          btnTitle="Edit Product"
           title="Edit Product"
           onSave={saveUpdate}
           onCancel={cancelUpdate}
         >
           <div className="">
-            <InputFile onChange={(e) => handleImage(e)} src={imageProduct} />
+            <InputFile
+              id="addItem"
+              onChange={(e) => handleImage(e)}
+              src={imageProduct || flashProduct?.image}
+            />
 
             <div className="flex items-center">
               <label htmlFor="productTitle" className="mr-5">
@@ -78,7 +80,7 @@ function UpdateProduct() {
                 }}
               >
                 Current Price: THB {flashProduct?.price}
-                <i class=" ml-3 fa-solid fa-pen-clip"></i>
+                <i className=" ml-3 fa-solid fa-pen-clip"></i>
               </span>
               <input
                 type="number"

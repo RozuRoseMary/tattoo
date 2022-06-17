@@ -9,23 +9,19 @@ import {
 
 import FooterProfile from "./footer/FooterProfile";
 import Spinner from "../../ui/Spinner";
-import Modal from "../../ui/Modal";
 import SubHeader from "../../../layouts/subheader/SubHeader";
-import UserIcon from "../../../components/ui/UserIcon";
-import Input from "../../ui/Input";
 import LeftProfile from "./header/LeftProfile";
 import RightProfile from "./header/RightProfile";
 import ProfilePic from "./header/ProfilePic";
-import axios from "axios";
 import DetailProfile from "./header/DetailProfile";
+import { useError } from "../../../context/ErrorContext";
 
 function ProfileContainer() {
   const { userId } = useParams();
-  const navigate = useNavigate();
   const { user } = useAuth();
+  const { setError } = useError();
 
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState(false);
   const [getUser, setGetUser] = useState(null);
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState(null);
@@ -39,7 +35,7 @@ function ProfileContainer() {
         const res = await getUserByIdApi(userId);
         setGetUser(res.data.user);
       } catch (err) {
-        console.log(err);
+        setError(err.response.data.message);
       } finally {
         setLoading(false);
       }
@@ -48,7 +44,6 @@ function ProfileContainer() {
   }, [userId]);
 
   const editProfile = () => {
-    // setModal(!modal);
     setEdit(!edit);
     if (edit) {
       handleSave();
@@ -57,20 +52,22 @@ function ProfileContainer() {
 
   const handleSave = async () => {
     try {
-      setLoading(true);
-
       // * update profile picture
       const formData = new FormData();
       formData.append("profilePicture", image);
 
       await updateProfilePic(formData);
-      setImage(null);
 
       // * update profile
       await updateProfileApi({ displayName, aboutMe });
-      window.location.reload();
+
+      if (image || displayName || aboutMe) {
+        setLoading(true);
+        window.location.reload();
+        setImage(null);
+      }
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -88,7 +85,7 @@ function ProfileContainer() {
   return (
     <>
       {!getUser.firstName ? (
-        <h1>WAITING FOR PAGE TO LOADING</h1>
+        <></>
       ) : (
         <div className="profile-container">
           <div className="flex p-11 flex-wrap min-h-[250px]">
@@ -106,29 +103,36 @@ function ProfileContainer() {
               setDisplayName={setDisplayName}
             />
 
-            {/* {user ? modal && <Modal /> : null} */}
-
             <div className="line-x "></div>
 
             <div className="flex flex-col grow">
-              <RightProfile
-                edit={edit}
-                getUser={getUser}
-                editProfile={editProfile}
-                setAboutMe={setAboutMe}
-              />
-
               {user && (
+                <RightProfile
+                  edit={edit}
+                  getUser={getUser}
+                  editProfile={editProfile}
+                  setAboutMe={setAboutMe}
+                />
+              )}
+
+              {user.id === +userId && (
                 <div className="flex ">
-                  <button className="btn w-[120px]" onClick={editProfile}>
+                  <button className="btn w-[10rem]" onClick={editProfile}>
                     {edit ? "Save" : "Your Account"}
                   </button>
 
-                  {edit || <DetailProfile />}
+                  {edit || (
+                    <DetailProfile
+                      edit={edit}
+                      getUser={getUser}
+                      editProfile={editProfile}
+                      setAboutMe={setAboutMe}
+                    />
+                  )}
 
                   {edit && (
                     <button
-                      className="btn w-[120px] ml-10"
+                      className="btn w-[10rem] ml-10"
                       onClick={handleCancel}
                     >
                       Cancel

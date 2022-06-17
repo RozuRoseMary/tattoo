@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "../../../ui/Input";
-import ProfilePic from "./ProfilePic";
 
 function LeftProfile({ edit, getUser, setDisplayName }) {
   return (

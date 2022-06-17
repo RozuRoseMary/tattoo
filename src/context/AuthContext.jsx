@@ -7,11 +7,14 @@ import {
   removeAccessToken,
   setAccessToken,
 } from "../services/LocalStorage";
+import { useError } from "./ErrorContext";
 
 const AuthContext = createContext();
 
 function AuthContextProvider({ children }) {
+  const { setError } = useError();
   const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,17 +34,27 @@ function AuthContextProvider({ children }) {
   }, []);
 
   const register = async (input) => {
-    const res = await registerApi(input);
-    setAccessToken(res.data.token);
-    const resMe = await getMeApi();
-    setUser(resMe.data.user);
+    try {
+      const res = await registerApi(input);
+      setAccessToken(res.data.token);
+      const resMe = await getMeApi();
+      setUser(resMe.data.user);
+      navigate("/home");
+    } catch (error) {
+      setError(error.response.data.message);
+    }
   };
 
   const login = async (input) => {
-    const res = await loginApi(input);
-    setAccessToken(res.data.token);
-    const resMe = await getMeApi();
-    setUser(resMe.data.user);
+    try {
+      const res = await loginApi(input);
+      setAccessToken(res.data.token);
+      const resMe = await getMeApi();
+      setUser(resMe.data.user);
+      navigate("/home");
+    } catch (error) {
+      setError(error.response.data.message);
+    }
   };
 
   const logout = () => {

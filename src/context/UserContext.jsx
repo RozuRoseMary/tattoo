@@ -1,32 +1,75 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getUserByIdApi } from "../api/user";
-import { useAuth } from "./AuthContext";
+import React, { createContext, useContext, useState } from "react";
+import { useEffect } from "react";
+import {
+  createPaymentApi,
+  getAllPaymentUserIdApi,
+  getPaymentSellerIdApi,
+  getUserByIdApi,
+  updatePaymentPicApi,
+} from "../api/user";
+import { getAccessToken } from "../services/LocalStorage";
+import { useError } from "./ErrorContext";
+import { useLoading } from "./LoadingContext";
 
 const UserContext = createContext();
 
 function UserContextProvider({ children }) {
+  const { setError } = useError();
+  const { setLoading } = useLoading();
   const [userProfile, setUserProfile] = useState(null);
+  const [myPayments, setMyPayments] = useState(null);
+  const [sellerPayments, setSellerPayments] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchUserById = async () => {
-  //     try {
-  //       const res = await getUserByIdApi();
-  //       setUserProfile(res.data.user);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //     return fetchUserById;
-  //   };
-  // }, []);
+  useEffect(() => {
+    const getAllPaymentUserId = async () => {
+      try {
+        const token = getAccessToken();
+        if (token) {
+          setLoading(true);
+          const res = await getAllPaymentUserIdApi();
+          setMyPayments(res.data.payments);
+        }
+      } catch (err) {
+        setError(err.response.data.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    return getAllPaymentUserId;
+  }, []);
 
-  const getUserById = async (input) => {
-    const res = await getUserByIdApi(input);
-    setUserProfile(res.data.user);
+  const createPayment = async (input) => {
+    try {
+      await createPaymentApi(input);
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
+
+  const getPaymentSellerId = async (productId) => {
+    try {
+      if (productId) {
+        setLoading(true);
+        const res = await getPaymentSellerIdApi(productId);
+      }
+    } catch (err) {
+      setError(err.response.data.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <UserContext.Provider value={{ userProfile, getUserByIdApi }}>
+    <UserContext.Provider
+      value={{
+        userProfile,
+        myPayments,
+        sellerPayments,
+        setSellerPayments,
+        createPayment,
+        getPaymentSellerId,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

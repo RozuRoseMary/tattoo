@@ -8,7 +8,6 @@ import SubmitButton from "../form/SubmitButton";
 
 function LoginForm() {
   const { login } = useAuth();
-  const navigate = useNavigate();
 
   const schema = object({
     username: string().required("Username is required"),
@@ -17,13 +16,12 @@ function LoginForm() {
 
   const handleLoginSubmit = async ({ username, password }) => {
     await login({ username, password });
-    navigate("/home");
   };
 
   return (
     <Form schema={schema}>
       <Input name="username" type="text" nameShow="Username" />
-      <Input name="password" type="text" nameShow="Password" />
+      <Input name="password" type="password" nameShow="Password" />
 
       <div className="">
         <Link to="/forget_password">

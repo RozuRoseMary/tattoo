@@ -3,15 +3,19 @@ import {
   createProductApi,
   deleteProductApi,
   getAllProductApi,
+  getAllProductAvailableApi,
   getProductByIdApi,
+  getProductByUserIdApi,
   updateProductApi,
 } from "../api/product";
+import { useError } from "./ErrorContext";
 
 const ProductContext = createContext();
 
 function ProductContextProvider({ children }) {
-  const [loading, setLoading] = useState(false);
+  const { setError } = useError();
   const [allProduct, setAllProduct] = useState(null);
+  const [allProductAvailable, setAllProductAvailable] = useState(null);
   const [flashProduct, setFlashProduct] = useState(null);
 
   useEffect(() => {
@@ -20,17 +24,38 @@ function ProductContextProvider({ children }) {
         const res = await getAllProductApi();
         setAllProduct(res.data.products);
       } catch (err) {
-        console.log(err);
+        setError(err.response.data.message);
       }
     };
     return fetchProducts;
   }, [flashProduct]);
 
+  useEffect(() => {
+    const fetchProductAvailable = async () => {
+      try {
+        const res = await getAllProductAvailableApi();
+        setAllProductAvailable(res.data.products);
+      } catch (err) {
+        setError(err.response.data.message);
+      }
+    };
+    return fetchProductAvailable;
+  }, [flashProduct]);
+
+  const fetchProduct = async (id) => {
+    try {
+      const res = await getProductByIdApi(id);
+      setFlashProduct(res.data.product);
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
+
   const createProduct = async (input) => {
     try {
       await createProductApi(input);
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.message);
     }
   };
 
@@ -38,7 +63,7 @@ function ProductContextProvider({ children }) {
     try {
       await updateProductApi(productId, input);
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.message);
     }
   };
 
@@ -46,7 +71,7 @@ function ProductContextProvider({ children }) {
     try {
       await deleteProductApi(productId);
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.message);
     }
   };
 
@@ -54,9 +79,10 @@ function ProductContextProvider({ children }) {
     <ProductContext.Provider
       value={{
         allProduct,
+        allProductAvailable,
         flashProduct,
         setFlashProduct,
-        // getProductById,
+        fetchProduct,
         createProduct,
         updateProduct,
         deleteProduct,

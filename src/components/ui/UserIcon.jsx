@@ -1,7 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import Spinner from "./Spinner";
 
 function UserIcon({ src, containerSize, getUser }) {
   const { user } = useAuth();

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getProductByUserIdApi } from "../../../../api/product";
-import { useProduct } from "../../../../context/ProductContext";
+import { useError } from "../../../../context/ErrorContext";
 import FlashCard from "../../../ui/FlashCard";
 import Spinner from "../../../ui/Spinner";
 
 function ProductList() {
+  const { setError } = useError();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const { pathname } = useLocation();
@@ -18,11 +19,12 @@ function ProductList() {
         const res = await getProductByUserIdApi(path);
         setProducts(res.data.products);
       } catch (err) {
-        console.log(err);
+        setError(err.response.data.message);
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
@@ -46,7 +48,7 @@ function ProductList() {
         ))
       ) : (
         <div className="flex justify-center mt-14 text-big">
-          This user has no product.
+          No product to display.
         </div>
       )}
     </>

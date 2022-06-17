@@ -6,13 +6,15 @@ import { useAuth } from "../../context/AuthContext";
 import { useProduct } from "../../context/ProductContext";
 import { useLoading } from "../../context/LoadingContext";
 import Spinner from "../../components/ui/Spinner";
+import { useError } from "../../context/ErrorContext";
 
 function AddItem() {
   const { user } = useAuth();
+  const { setError } = useError();
   const { createProduct } = useProduct();
   const { loading, setLoading } = useLoading();
   const { userId } = useParams();
-  const isUserLogin = user.id == userId;
+  const isUserLogin = +user.id === +userId;
 
   const [imageProduct, setImageProduct] = useState(null);
   const [productTitle, setProductTitle] = useState("");
@@ -32,10 +34,8 @@ function AddItem() {
     setProductDes("");
   };
 
-  const handleAddItem = async ({ image, title, price, description }) => {
+  const handleAddItem = async () => {
     try {
-      setLoading(true);
-
       const formData = new FormData();
       formData.append("image", imageProduct);
       formData.append("title", productTitle);
@@ -45,16 +45,17 @@ function AddItem() {
       await createProduct(formData);
 
       if (
-        !formData.get("image") &&
+        formData.get("image") &&
         formData.get("title") &&
         formData.get("price") !== 0
       ) {
-        handleCancel();
-      }
+        setLoading(true);
 
-      window.location.reload();
+        handleCancel();
+        window.location.reload();
+      }
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -63,18 +64,24 @@ function AddItem() {
   if (loading) return <Spinner />;
 
   return (
-    <div className="flex justify-center align-middle ">
+    <div className="flex justify-center align-middle text-gray">
       {isUserLogin && (
         <Modal
           id="add-item"
+          btnToggle={"addItem"}
           btnStyle={" btn-as-text "}
           btnSize="text-1rem"
           icon="fa-solid fa-circle-plus"
+          btnTitle="Add Item"
           title="Add Item"
           onSave={handleAddItem}
           onCancel={handleCancel}
         >
-          <InputFile onChange={(e) => handleImage(e)} src={imageProduct} />
+          <InputFile
+            id="addProductImg"
+            onChange={(e) => handleImage(e)}
+            src={imageProduct}
+          />
 
           <div className="flex items-center">
             <label htmlFor="productTitle" className="mr-5">

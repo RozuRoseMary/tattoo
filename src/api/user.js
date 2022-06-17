@@ -10,5 +10,12 @@ export const updateProfilePic = (pictureFile) =>
 export const updateProfileApi = (input) =>
   axios.patch("/users/updateProfile", input);
 
-//   export const updateProfilePic = (pictureFile) =>
-//   axios.patch("/users/updateProfilePic", pictureFile);
+//  * PAYMENT
+export const createPaymentApi = (input) => axios.post("/users/payment", input);
+
+export const getAllPaymentUserIdApi = () => axios.get("/users/getMe/payments");
+
+export const getPaymentSellerIdApi = (productId) =>
+  axios.get("/paymentSellerId/" + productId);
+
+// TODO delete

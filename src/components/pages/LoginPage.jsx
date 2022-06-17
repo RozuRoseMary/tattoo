@@ -5,11 +5,11 @@ import logo from "../../assets/imgs/0needle.png";
 
 function LoginPage() {
   return (
-    <div className="flex justify-center h-[100vh] ">
-      <div className="grid content-between  max-w-[50vw] my-[100px] px-[50px] py-[30px] bg-black rounded-md shadow-lg shadow-indigo-500/40">
+    <div className="flex justify-center h-[100%] ">
+      <div className="grid content-between  w-[20rem] h-[32rem] my-5 px-[50px] py-[0.5rem] bg-black rounded-md shadow-lg shadow-indigo-500/40">
         <div className="mt-8">
           <Link to="/home">
-            <img src={logo} alt="" className="w-[3.5rem] m-[auto]" />
+            <img src={logo} alt="logo" className="w-[3.5rem] m-[auto]" />
           </Link>
         </div>
         <span className="text-header flex justify-center ">Login</span>

@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import DropdownUser from "./DropdownUser";
+import React from "react";
 import SearchItem from "./SearchItem";
 import PageIcon from "./PageIcon";
 import UserHeader from "./UserHeader";

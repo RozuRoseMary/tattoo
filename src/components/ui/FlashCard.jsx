@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import productImg from "../../assets/imgs/phoenix.jpg";
 
 function FlashCard({
   id,
@@ -11,21 +10,14 @@ function FlashCard({
   tattooer,
   tattooistId,
 }) {
-  const [show, setShow] = useState(false);
-  const [seller, setSeller] = useState(null);
-
-  const showProductDetail = () => {
-    setShow(!show);
-  };
-
   return (
     <div
-      // onClick={showProductDetail}
-      className="bg-black text-white rounded-md w-56 h-64 m-14 shadow-md
+      className="bg-black text-white rounded-md w-56 h-64 m-[1rem] shadow-md
         "
     >
       <Link to={"/product/" + id}>
-        <div className="picture bg-white w-56 h-[140px] rounded-t-md overflow-hidden">
+        {/* invert blur-sm */}
+        <div className="picture bg-white w-56 h-[12rem] rounded-t-md overflow-hidden ">
           <img src={image} className="" />
         </div>
         <div className="flex justify-between mx-2 my-1">
@@ -35,7 +27,7 @@ function FlashCard({
           <span>THB {price}</span>
         </div>
 
-        <div className="mx-2 text-username">
+        <div className="mx-2 text-light-pink">
           <span>
             @
             {tattooistId
@@ -45,7 +37,6 @@ function FlashCard({
                 tattooer?.firstName + " " + tattooer?.lastName}
           </span>
         </div>
-        {/* {show && <Product />} */}
       </Link>
     </div>
   );

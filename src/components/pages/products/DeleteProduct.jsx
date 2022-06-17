@@ -4,8 +4,10 @@ import { useProduct } from "../../../context/ProductContext";
 import { useLoading } from "../../../context/LoadingContext";
 import Spinner from "../../ui/Spinner";
 import Modal from "../../ui/Modal";
+import { useError } from "../../../context/ErrorContext";
 
 function DeleteProduct() {
+  const { setError } = useError();
   const { loading, setLoading } = useLoading();
   const { deleteProduct } = useProduct();
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ function DeleteProduct() {
       handleCancel();
       navigate("/home");
     } catch (err) {
-      console.log(err);
+      setError(err.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -33,7 +35,8 @@ function DeleteProduct() {
   return (
     <Modal
       icon="fa-solid fa-trash-can"
-      title="DELETE ITEM"
+      btnTitle="DELETE ITEM"
+      title="Delete Item"
       onSave={handleDelete}
       onCancel={handleCancel}
       id="DeleteToggle"

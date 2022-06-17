@@ -1,6 +1,5 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { FaStarOfLife } from "react-icons/fa";
 
 function Input({ name, type, nameShow }) {
   const {
@@ -17,9 +16,11 @@ function Input({ name, type, nameShow }) {
             <div className="">
               <label
                 htmlFor={name}
-                className={`pr-5 text-lg ${type == "text" ? " hidden" : " "}`}
+                className={`pr-5 text-sm text-gray ${
+                  type == "text" || type == "password" ? " hidden" : " "
+                }`}
               >
-                {name}
+                {name} :
               </label>
               <div className="flex ">
                 <input
@@ -28,7 +29,7 @@ function Input({ name, type, nameShow }) {
                   name={name}
                   onChange={onChange}
                   value={value}
-                  className="input relative"
+                  className="relative w-[100%] my-[1rem] block bg-black placeholder-gray border-solid border border-gray rounded p-2"
                 />
               </div>
             </div>

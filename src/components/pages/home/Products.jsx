@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useLoading } from "../../../context/LoadingContext";
 import { useProduct } from "../../../context/ProductContext";
 import FlashCard from "../../ui/FlashCard";
 import Spinner from "../../ui/Spinner";
-import ViewAll from "./ViewAll";
 
-function TopFlash() {
+function Products() {
   const { loading, setLoading } = useLoading();
-  const { allProduct } = useProduct();
+  const { allProductAvailable } = useProduct();
 
   useEffect(() => {
     try {
@@ -22,13 +21,12 @@ function TopFlash() {
 
   return (
     <div className="py-6 mx-[48px]">
-      <ViewAll>Top Flash Tattoo likes</ViewAll>
+      <div className="view-all flex justify-start mx-2">
+        <span className="text-big">New Tattoo Flash Available</span>
+      </div>
 
-      <div
-        // className="cards-cont flex flex-row justify-between flex-wrap
-        className="cards-cont grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2  mx-5 breakpoints"
-      >
-        {allProduct?.map((el) => (
+      <div className="cards-cont grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2  mx-[0.1rem] breakpoints">
+        {allProductAvailable?.map((el) => (
           <FlashCard
             key={el.id}
             id={el.id}
@@ -45,4 +43,4 @@ function TopFlash() {
   );
 }
 
-export default TopFlash;
+export default Products;

@@ -2,7 +2,7 @@ import React from "react";
 
 function Spinner() {
   return (
-    <div className="z-50 fixed top-1/2 left-[40%]">
+    <div className="z-[100] fixed top-1/2 left-[40%]">
       <div className="w-64 text-center p-4 bg-gradient-to-r from-deeper-blue to-blue opacity-75">
         <svg
           role="status"

@@ -9,20 +9,26 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { UserContextProvider } from "./context/UserContext";
 import { ProductContextProvider } from "./context/ProductContext";
 import { LoadingContextProvider } from "./context/LoadingContext";
+import { TransactionContextProvider } from "./context/TransactionContext";
+import { ErrorContextProvider } from "./context/ErrorContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <LoadingContextProvider>
-        <AuthContextProvider>
-          <UserContextProvider>
-            <ProductContextProvider>
-              <App />
-            </ProductContextProvider>
-          </UserContextProvider>
-        </AuthContextProvider>
-      </LoadingContextProvider>
+      <ErrorContextProvider>
+        <LoadingContextProvider>
+          <AuthContextProvider>
+            <UserContextProvider>
+              <ProductContextProvider>
+                <TransactionContextProvider>
+                  <App />
+                </TransactionContextProvider>
+              </ProductContextProvider>
+            </UserContextProvider>
+          </AuthContextProvider>
+        </LoadingContextProvider>
+      </ErrorContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

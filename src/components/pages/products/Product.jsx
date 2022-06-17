@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
-import BlackContainer from "../../ui/BlackContainer";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useProduct } from "../../../context/ProductContext";
 import { useAuth } from "../../../context/AuthContext";
-import { getProductByIdApi } from "../../../api/product";
 import Spinner from "../../ui/Spinner";
-import Modal from "../../ui/Modal";
 import UpdateProduct from "./UpdateProduct";
 import DeleteProduct from "./DeleteProduct";
+import TopAlert from "../../ui/Alert";
+import { useLoading } from "../../../context/LoadingContext";
+import { useError } from "../../../context/ErrorContext";
 
 function Product() {
+  const { setError } = useError();
   const { user } = useAuth();
-  const { flashProduct, setFlashProduct } = useProduct();
-  const { pathname } = useLocation();
-  const { productId } = useParams();
-  const [loading, setLoading] = useState(false);
+  const { flashProduct, fetchProduct } = useProduct();
+  const { id } = useParams();
+  const { loading, setLoading } = useLoading();
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        setLoading(true);
-        const res = await getProductByIdApi(productId);
-        setFlashProduct(res.data.product);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProduct();
-  }, [productId]);
+    try {
+      setLoading(true);
+      fetchProduct(id);
+    } catch (err) {
+      setError(err.response.data.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [id]);
 
   let isUser;
   if (
@@ -39,31 +35,47 @@ function Product() {
     isUser = true;
   } else isUser = false;
 
+  let available;
+  if (flashProduct?.status === "AVAILABLE") {
+    available = true;
+  } else available = false;
+
   if (loading) return <Spinner />;
 
   return (
     <>
       {
         <>
-          <div className="flex justify-center py-[50px] h-16 ">
-            {isUser && (
-              <div className="flex justify-around  items-center flex-wrap w-9/12">
-                <UpdateProduct />
-                <DeleteProduct />
-              </div>
+          <div className="flex justify-center pt-[2rem]   h-[20%] ">
+            {available || (
+              <TopAlert
+                icon={"fa-solid fa-sack-xmark "}
+                title={"Sold Out"}
+                content={"Product was sold out. You can not buy this product."}
+                styleHeader={"text-red"}
+              />
             )}
+            {!available ||
+              (isUser && (
+                <div className="flex justify-around items-center flex-wrap w-9/12">
+                  <UpdateProduct />
+                  <DeleteProduct />
+                </div>
+              ))}
           </div>
-          <div className="flex justify-center">
-            <div className="my-[50px] px-[50px] py-14 bg-black rounded-md shadow-lg ">
-              <div className="max-w-[500px]">
+          <div className="flex justify-center ">
+            <div className="w-[50rem] my-[50px] px-[50px] py-14 bg-black rounded-md shadow-lg ">
+              <div className="">
                 <div className="top flex">
                   <img
                     src={flashProduct?.image}
-                    alt=""
-                    className="w-[20rem] mr-10"
+                    alt={flashProduct?.title}
+                    className={`w-[20rem] mr-10 relative ${
+                      available || " blur-sm"
+                    } `}
                   />
 
-                  <div className="product-detail">
+                  <div className="ml-10">
                     <p className="text-big">{flashProduct?.title}</p>
                     <p className="text-price text-big my-5">
                       THB
@@ -90,10 +102,10 @@ function Product() {
                             " " +
                             flashProduct?.Tattooer?.lastName}
                     </Link>
-                    {isUser ? (
+                    {!available || isUser ? (
                       <div></div>
                     ) : (
-                      <Link to="/checkout">
+                      <Link to={"/product/" + flashProduct?.id + "/checkout"}>
                         <i className="my-5 fa-solid fa-cart-plus text-light-pink text-big"></i>
                       </Link>
                     )}

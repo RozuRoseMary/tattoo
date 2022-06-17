@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Spinner from "../../components/ui/Spinner";
+import { useLocation, useNavigate } from "react-router-dom";
 import UserIcon from "../../components/ui/UserIcon";
 import { useAuth } from "../../context/AuthContext";
 import DropdownUser from "./DropdownUser";
@@ -39,7 +38,7 @@ function UserHeader() {
                   <i
                     className={
                       user
-                        ? "fa-solid fa-sort-down"
+                        ? "fa-solid fa-sort-down flex items-center"
                         : "fa-solid fa-right-to-bracket"
                     }
                   ></i>
