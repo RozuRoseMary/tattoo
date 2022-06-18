@@ -18,20 +18,17 @@ function Router() {
       <Route path="*" element={<Navigate to="/" />}></Route>
       <>
         <Route path="/" element={<Home />}></Route>
-
         <Route path="profile/:userId" element={<ProfilePage />}>
           <Route path="products" element={<ProfilePage />}></Route>
-          <Route path="booking" element={<ProfilePage />}></Route>
+          {/* <Route path="booking" element={<ProfilePage />}></Route> */}
           <Route path="location" element={<ProfilePage />}></Route>
-          {user && <Route path="statement" element={<ProfilePage />}></Route>}
+          <Route path="statement" element={<ProfilePage />}></Route>
         </Route>
         <Route path="product/:id" element={<Product />}></Route>
-
         <Route
           path="product/:productId/checkout"
           element={<Checkout />}
         ></Route>
-
         <Route path="paid" element={<Paid />}></Route>
       </>
       <Route path="/" element={<Home />}></Route>

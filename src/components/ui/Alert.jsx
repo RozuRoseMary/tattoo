@@ -13,7 +13,9 @@ function Alert({ icon, title, styleHeader, onCLick }) {
       >
         <div class=" bg-red flex justify-between items-center py-2 px-3 bg-clip-padding border border-gray-200 rounded-lg">
           <div className="flex items-center">
-            {icon && <p className={icon + "animate-bounce mr-5"}></p>}
+            {icon && (
+              <p className={icon + "animate-bounce mr-5 text-white"}></p>
+            )}
             <p class="font-bold text-white">{title}</p>
           </div>
           <div class="flex items-center">

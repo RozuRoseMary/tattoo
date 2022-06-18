@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { deletePaymentApi } from "../../../../api/user";
 import { useError } from "../../../../context/ErrorContext";
 import { useLoading } from "../../../../context/LoadingContext";
 import { useUser } from "../../../../context/UserContext";
 import InputFile from "../../../ui/InputFile";
 import Modal from "../../../ui/Modal";
+import PaymentItem from "./PaymentItem";
 
 function Payments() {
   const { setError } = useError();
   const { setLoading } = useLoading();
+  const navigate = useNavigate();
   const { myPayments, createPayment } = useUser();
   const [paymentData, setPaymentData] = useState("Other");
   const [paymentPic, setPaymentPic] = useState(null);
@@ -20,6 +24,10 @@ function Payments() {
 
   const handleSave = async () => {
     try {
+      if (paymentPic) {
+        setLoading(true);
+      }
+
       const formData = new FormData();
       formData.append("paymentPicture", paymentPic);
       formData.append("paymentData", paymentData);
@@ -27,7 +35,6 @@ function Payments() {
       await createPayment(formData);
 
       if (paymentPic) {
-        setLoading(true);
         window.location.reload();
       }
     } catch (err) {
@@ -36,8 +43,6 @@ function Payments() {
       setLoading(false);
     }
   };
-
-  const removePayment = () => {};
 
   return (
     <Modal
@@ -53,10 +58,7 @@ function Payments() {
         <div className="">QR payment : </div>
         <div className="grid grid-cols-3 bg-black-gray p-2 mt-2 rounded-md">
           {myPayments?.map((el) => (
-            <div onClick={removePayment}>
-              <p className="text-pink">{el.paymentData}</p>
-              <img src={el.paymentPicture} className="w-20" />
-            </div>
+            <PaymentItem el={el} />
           ))}
         </div>
         <div className="flex flex-col my-[1.5rem]">

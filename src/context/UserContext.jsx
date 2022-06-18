@@ -46,19 +46,6 @@ function UserContextProvider({ children }) {
     }
   };
 
-  const getPaymentSellerId = async (productId) => {
-    try {
-      if (productId) {
-        setLoading(true);
-        const res = await getPaymentSellerIdApi(productId);
-      }
-    } catch (err) {
-      setError(err.response.data.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <UserContext.Provider
       value={{
@@ -67,7 +54,6 @@ function UserContextProvider({ children }) {
         sellerPayments,
         setSellerPayments,
         createPayment,
-        getPaymentSellerId,
       }}
     >
       {children}

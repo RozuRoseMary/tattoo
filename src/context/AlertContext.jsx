@@ -6,10 +6,10 @@ import { createContext } from "react";
 const AlertContext = createContext();
 
 function AlertContextProvider({ children }) {
-  const [alertInModal, setAlertInModal] = useState(null);
+  const [alertOutOfModal, setAlertOutOfModal] = useState(false);
 
   return (
-    <AlertContext.Provider value={{ alertInModal, setAlertInModal }}>
+    <AlertContext.Provider value={{ alertOutOfModal, setAlertOutOfModal }}>
       {children}
     </AlertContext.Provider>
   );

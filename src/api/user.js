@@ -13,9 +13,11 @@ export const updateProfileApi = (input) =>
 //  * PAYMENT
 export const createPaymentApi = (input) => axios.post("/users/payment", input);
 
+export const deletePaymentApi = (id) => axios.delete("/users/payment/" + id);
+
 export const getAllPaymentUserIdApi = () => axios.get("/users/getMe/payments");
 
 export const getPaymentSellerIdApi = (productId) =>
-  axios.get("/paymentSellerId/" + productId);
+  axios.get("/users/paymentSellerId/" + productId);
 
 // TODO delete

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { deletePaymentApi } from "../../../../api/user";
 import { useError } from "../../../../context/ErrorContext";
 import { useLoading } from "../../../../context/LoadingContext";
 import { useTransaction } from "../../../../context/TransactionContext";
@@ -11,6 +12,8 @@ function UpdateTransaction({ el }) {
 
   const [transactionStatus, setTransactionStatus] = useState(el.status);
 
+  console.log(el);
+
   const handleUpdate = async () => {
     try {
       await updateTransaction({
@@ -20,8 +23,8 @@ function UpdateTransaction({ el }) {
       });
 
       if (transactionStatus !== el.status) {
-        window.location.reload();
         setLoading(true);
+        window.location.reload();
       }
     } catch (error) {
       setError(error.response.data.message);
@@ -50,9 +53,24 @@ function UpdateTransaction({ el }) {
             className="w-[10rem] h-[3rem] block bg-black placeholder-gray border-solid border border-gray rounded p-2  my-3"
             onChange={(e) => setTransactionStatus(e.target.value)}
           >
-            <option value="PENDING">PENDING</option>
-            <option value="PAID">PAID</option>
-            <option value="CANCEL">CANCEL</option>
+            <option
+              value="PENDING"
+              selected={transactionStatus === "PENDING" && "selected"}
+            >
+              PENDING
+            </option>
+            <option
+              value="PAID"
+              selected={transactionStatus === "PAID" && "selected"}
+            >
+              PAID
+            </option>
+            <option
+              value="CANCEL"
+              selected={transactionStatus === "CANCEL" && "selected"}
+            >
+              CANCEL
+            </option>
           </select>
           <img src={el.payment} alt="" />
         </div>

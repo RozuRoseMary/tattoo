@@ -50,7 +50,6 @@ function AddItem() {
         formData.get("price") !== 0
       ) {
         setLoading(true);
-
         handleCancel();
         window.location.reload();
       }

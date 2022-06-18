@@ -29,10 +29,11 @@ function App() {
         ) : (
           <></>
         )}
+
         {error && (
           <Alert
             title={error}
-            icon="fa-solid fa-circle-exclamation"
+            icon=" fa-solid fa-circle-exclamation "
             onCLick={() => setError(false)}
           />
         )}

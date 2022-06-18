@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useError } from "../../../context/ErrorContext";
 import { useLoading } from "../../../context/LoadingContext";
 import { useProduct } from "../../../context/ProductContext";
 import InputFile from "../../ui/InputFile";
@@ -7,6 +8,7 @@ import Modal from "../../ui/Modal";
 function UpdateProduct() {
   const { flashProduct, updateProduct } = useProduct();
   const { setLoading } = useLoading();
+  const { setError } = useError();
 
   const [changePrice, setChangePrice] = useState(true);
   const [imageProduct, setImageProduct] = useState(null);
@@ -21,15 +23,25 @@ function UpdateProduct() {
   };
 
   const saveUpdate = async () => {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const formData = new FormData();
-    formData.append("image", imageProduct);
-    formData.append("title", productTitle);
-    formData.append("price", productPrice);
-    formData.append("description", productDes);
+      const formData = new FormData();
+      formData.append("image", imageProduct);
+      formData.append("title", productTitle);
+      formData.append("price", productPrice);
+      formData.append("description", productDes);
 
-    await updateProduct(flashProduct?.id, formData);
+      await updateProduct(flashProduct?.id, formData);
+
+      if (imageProduct || productTitle || productPrice || productDes) {
+        window.location.reload();
+      }
+    } catch (err) {
+      setError(err.response.data.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const cancelUpdate = () => {};

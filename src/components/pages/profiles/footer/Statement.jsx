@@ -69,15 +69,20 @@ function Statement() {
   return (
     <>
       <div className="m-3 flex justify-between align-middle">
-        <Payments />
-        <select
-          name="paidReceive"
-          className="w-[10rem] h-[3rem] block bg-black placeholder-gray border-solid border border-gray rounded p-2  my-3"
-          onChange={(e) => setPaidReceived(e.target.value)}
-        >
-          <option value="PAID">EXPENSE</option>
-          <option value="RECEIVED">INCOME</option>
-        </select>
+        {user?.role !== "CLIENT" && (
+          <>
+            {" "}
+            <Payments />
+            <select
+              name="paidReceive"
+              className="w-[10rem] h-[3rem] block bg-black placeholder-gray border-solid border border-gray rounded p-2  my-3"
+              onChange={(e) => setPaidReceived(e.target.value)}
+            >
+              <option value="PAID">EXPENSE</option>
+              <option value="RECEIVED">INCOME</option>
+            </select>
+          </>
+        )}
       </div>
       {statements?.length > 0 ? (
         <TableStatement

@@ -9,23 +9,23 @@ function MenuList() {
   const { pathname } = useLocation();
 
   let isUser;
-  if (user.id === +userId) {
+  if (user?.id === +userId) {
     isUser = true;
   } else isUser = false;
 
   // * TATTOOIST
   const menuTattooist = [
     {
-      title: "Flash Available",
+      title: "Flash",
       to: `/profile/${userId}/products`,
       icon: "fa-solid fa-basket-shopping",
     },
 
-    {
-      title: "Booking",
-      to: `/profile/${userId}/booking`,
-      icon: "fa-solid fa-calendar-check",
-    },
+    // {
+    //   title: "Booking",
+    //   to: `/profile/${userId}/booking`,
+    //   icon: "fa-solid fa-calendar-check",
+    // },
     {
       title: "Location",
       to: `/profile/${userId}/location`,

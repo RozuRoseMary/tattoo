@@ -52,6 +52,8 @@ function ProfileContainer() {
 
   const handleSave = async () => {
     try {
+      setLoading(true);
+
       // * update profile picture
       const formData = new FormData();
       formData.append("profilePicture", image);
@@ -62,7 +64,6 @@ function ProfileContainer() {
       await updateProfileApi({ displayName, aboutMe });
 
       if (image || displayName || aboutMe) {
-        setLoading(true);
         window.location.reload();
         setImage(null);
       }
@@ -115,7 +116,7 @@ function ProfileContainer() {
                 />
               )}
 
-              {user.id === +userId && (
+              {user?.id === +userId && (
                 <div className="flex ">
                   <button className="btn w-[10rem]" onClick={editProfile}>
                     {edit ? "Save" : "Your Account"}

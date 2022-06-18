@@ -6,13 +6,14 @@ import CheckoutPayment from "./CheckoutPayment";
 import CheckoutProduct from "./CheckoutProduct";
 import Spinner from "../../ui/Spinner";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Checkout() {
   const { setError } = useError();
   const { createTransaction } = useTransaction();
   const { loading, setLoading } = useLoading();
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -26,11 +27,22 @@ function Checkout() {
 
   const submitTransaction = async (productId, payment) => {
     try {
+      if (payment) {
+        setLoading(true);
+      }
+
       const formData = new FormData();
       formData.append("paymentPicture", payment);
       await createTransaction(productId, formData);
+
+      if (payment) {
+        window.location.reload();
+        navigate("/paid");
+      }
     } catch (error) {
       setError(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 

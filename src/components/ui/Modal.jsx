@@ -1,6 +1,8 @@
 import React from "react";
 import { useError } from "../../context/ErrorContext";
+import { useLoading } from "../../context/LoadingContext";
 import Alert from "./Alert";
+import Spinner from "./Spinner";
 
 function Modal({
   children,
@@ -17,6 +19,9 @@ function Modal({
   btnToggle,
 }) {
   const { error, setError } = useError();
+  const { loading } = useLoading();
+
+  // if (loading) return <Spinner />;
 
   return (
     <div>
@@ -46,6 +51,8 @@ function Modal({
         <div className=" modal-dialog relative w-auto pointer-events-none">
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-black bg-clip-padding rounded-md outline-none text-current">
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray rounded-t-md">
+              {loading && <Spinner />}
+
               <h5
                 className="text-big font-medium leading-normal text-gray"
                 id="exampleModalLabel"
@@ -65,7 +72,7 @@ function Modal({
               {error && (
                 <Alert
                   title={error}
-                  icon="fa-solid fa-circle-exclamation"
+                  icon=" fa-solid fa-circle-exclamation "
                   onCLick={() => setError(false)}
                 />
               )}

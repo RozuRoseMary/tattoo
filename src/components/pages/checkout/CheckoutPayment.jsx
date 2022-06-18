@@ -1,13 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { getPaymentSellerIdApi } from "../../../api/user";
+import { useError } from "../../../context/ErrorContext";
+import { useLoading } from "../../../context/LoadingContext";
 import { useTransaction } from "../../../context/TransactionContext";
-import { UserContext } from "../../../context/UserContext";
+import { UserContext, useUser } from "../../../context/UserContext";
 import InputFile from "../../ui/InputFile";
 import Modal from "../../ui/Modal";
 
 function CheckoutPayment({ submitTransaction }) {
+  const { setLoading } = useLoading();
+  const { setError } = useError();
+  const { sellerPayments, setSellerPayments } = useUser();
   const { payment, setPayment } = useTransaction();
-  const { getPaymentSellerId } = UserContext();
   const { productId } = useParams();
 
   const handlePaymentBill = (e) => {
@@ -15,6 +21,21 @@ function CheckoutPayment({ submitTransaction }) {
       setPayment(e.target.files[0]);
     }
   };
+
+  useEffect(() => {
+    const getPaymentSellerId = async () => {
+      try {
+        const res = await getPaymentSellerIdApi(productId);
+        setSellerPayments(res.data.payment);
+      } catch (err) {
+        setError(err.response.data.message);
+      }
+    };
+
+    getPaymentSellerId();
+  }, [productId]);
+
+  console.log(sellerPayments);
 
   return (
     <div className="payment ">
@@ -27,8 +48,16 @@ function CheckoutPayment({ submitTransaction }) {
             btnStyle="w-[15rem] my-5 px-[2rem] py-1 bg-deep-blue rounded hover:shadow-md hover:shadow-deeper-blue/50"
             btnSize={"text-1rem"}
           >
+            <div className=""></div>
             <div className="">Bank Account : </div>
-            <img src="" />
+            <div className="grid grid-cols-3 bg-black-gray p-2 mt-2 rounded-md">
+              {sellerPayments?.map((el) => (
+                <div>
+                  <p className="text-pink">{el.paymentData}</p>
+                  <img src={el.paymentPicture} className="w-40" />
+                </div>
+              ))}
+            </div>
             <InputFile
               id="payment"
               onChange={(e) => handlePaymentBill(e)}
@@ -46,7 +75,7 @@ function CheckoutPayment({ submitTransaction }) {
           </div>
           <button
             onClick={() => submitTransaction(productId, payment)}
-            className="w-[15rem] my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50"
+            className={`w-[15rem] my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50`}
           >
             Submit
           </button>

@@ -3,8 +3,8 @@ import defaultImage from "../../assets/imgs/default-image.jpg";
 
 function InputFile({ id, removeImg, onChange, src = "", alt = "img" }) {
   return (
-    <div>
-      <div className="flex justify-between align-middle items-center">
+    <div className="text-white">
+      <div className="flex flex-col justify-between align-middle items-center">
         <input
           type="file"
           id={id || "file"}
@@ -14,13 +14,13 @@ function InputFile({ id, removeImg, onChange, src = "", alt = "img" }) {
         />
         <label
           htmlFor={id || "file"}
-          className=" cursor-pointer text-center w-60 my-5 px-[2rem] py-1 bg-pink rounded hover:shadow-md hover:shadow-pink/50"
+          className="flex flex-col align-middle cursor-pointer text-center w-54 my-5 px-[2rem] py-4 bg-pink rounded  hover:shadow-md hover:shadow-pink/50"
         >
-          <i
+          <span
             className="fa-solid fa-arrow-up-from-bracket"
             onClick={removeImg}
-          ></i>
-          Choose File
+          ></span>
+          <span>Choose File</span>
         </label>
 
         {removeImg && <i className="fa-solid fa-xmark "></i>}
