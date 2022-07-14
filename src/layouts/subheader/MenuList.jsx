@@ -26,11 +26,11 @@ function MenuList() {
     //   to: `/profile/${userId}/booking`,
     //   icon: "fa-solid fa-calendar-check",
     // },
-    {
-      title: "Location",
-      to: `/profile/${userId}/location`,
-      icon: "fa-solid fa-location-dot",
-    },
+    // {
+    //   title: "Location",
+    //   to: `/profile/${userId}/location`,
+    //   icon: "fa-solid fa-location-dot",
+    // },
   ];
 
   return (
