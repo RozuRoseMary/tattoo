@@ -11,6 +11,7 @@ import { ProductContextProvider } from "./context/ProductContext";
 import { LoadingContextProvider } from "./context/LoadingContext";
 import { TransactionContextProvider } from "./context/TransactionContext";
 import { ErrorContextProvider } from "./context/ErrorContext";
+import ChatContextProvider from "./context/ChatContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,7 +23,9 @@ root.render(
             <UserContextProvider>
               <ProductContextProvider>
                 <TransactionContextProvider>
-                  <App />
+                  <ChatContextProvider>
+                    <App />
+                  </ChatContextProvider>
                 </TransactionContextProvider>
               </ProductContextProvider>
             </UserContextProvider>

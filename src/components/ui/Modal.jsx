@@ -11,6 +11,7 @@ function Modal({
   btnSize,
   btnSubmit,
   btnTitle,
+  btnTitleCancel,
   position,
   icon,
   title,
@@ -21,10 +22,12 @@ function Modal({
   const { error, setError } = useError();
   const { loading } = useLoading();
 
+  console.log(id);
+
   // if (loading) return <Spinner />;
 
   return (
-    <div>
+    <div id={id}>
       <button
         id={id}
         type="button"
@@ -40,9 +43,10 @@ function Modal({
           {btnTitle && <span> {btnTitle}</span>}
         </span>
       </button>
+      {loading && <Spinner />}
 
       <div
-        className="modal fade fixed mb-5 top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        className=" modal fade fixed mb-5 top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id={btnToggle || "exampleModal"}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
@@ -51,8 +55,6 @@ function Modal({
         <div className=" modal-dialog relative w-auto pointer-events-none">
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-black bg-clip-padding rounded-md outline-none text-current">
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray rounded-t-md">
-              {loading && <Spinner />}
-
               <h5
                 className="text-big font-medium leading-normal text-gray"
                 id="exampleModalLabel"
@@ -83,7 +85,7 @@ function Modal({
                 data-bs-dismiss="modal"
                 onClick={onCancel}
               >
-                Close
+                {btnTitleCancel || "Close"}
               </button>
 
               {onSave && (

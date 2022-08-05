@@ -36,20 +36,20 @@ function AddItem() {
 
   const handleAddItem = async () => {
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append("image", imageProduct);
       formData.append("title", productTitle);
       formData.append("price", productPrice);
       formData.append("description", productDes);
 
-      await createProduct(formData);
-
+      const res = await createProduct(formData);
       if (
         formData.get("image") &&
         formData.get("title") &&
         formData.get("price") !== 0
       ) {
-        setLoading(true);
+        console.log("first");
         handleCancel();
         window.location.reload();
       }

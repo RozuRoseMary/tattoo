@@ -8,7 +8,13 @@ function DropdownUser() {
   return (
     <div className="w-[200px] absolute left-[35px] top-[105px] bg-black-gray border-solid border-2 border-light-gray rounded ">
       <div className="flex flex-col">
-        <Link to={"/profile/" + user.id + "/products"}>
+        <Link
+          to={
+            user?.role === "CLIENT"
+              ? "/profile/" + user?.id + "/statement"
+              : "/profile/" + user?.id + "/products"
+          }
+        >
           <div className="my-5 ">
             {/* // TODO user.displayname || firstName */}
             <span className="icon-header ">Profile</span>

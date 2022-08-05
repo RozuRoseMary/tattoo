@@ -18,7 +18,10 @@ function FlashCard({
       <Link to={"/product/" + id}>
         {/* invert blur-sm */}
         <div className="picture bg-white w-56 h-[12rem] rounded-t-md overflow-hidden ">
-          <img src={image} className="" />
+          <img
+            src={image}
+            className="hover:brightness-75 transition transform-.2s hover:transform "
+          />
         </div>
         <div className="flex justify-between mx-2 my-1">
           <span>

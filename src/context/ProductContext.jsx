@@ -30,16 +30,17 @@ function ProductContextProvider({ children }) {
     return fetchProducts;
   }, [flashProduct]);
 
+  const fetchProductAvailable = async () => {
+    try {
+      const res = await getAllProductAvailableApi();
+      setAllProductAvailable(res.data.products);
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  };
+
   useEffect(() => {
-    const fetchProductAvailable = async () => {
-      try {
-        const res = await getAllProductAvailableApi();
-        setAllProductAvailable(res.data.products);
-      } catch (err) {
-        setError(err.response.data.message);
-      }
-    };
-    return fetchProductAvailable;
+    fetchProductAvailable();
   }, [flashProduct]);
 
   const fetchProduct = async (id) => {
@@ -83,6 +84,7 @@ function ProductContextProvider({ children }) {
         flashProduct,
         setFlashProduct,
         fetchProduct,
+        fetchProductAvailable,
         createProduct,
         updateProduct,
         deleteProduct,

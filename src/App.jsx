@@ -19,7 +19,7 @@ function App() {
     <>
       <Header />
       <div className="h-[100%] min-h-[100vh] bg-gradient-to-b from-light-pink to-blue text-white">
-        {isSeller && notHavePayment ? (
+        {/* {isSeller && notHavePayment ? (
           <AlertTop
             color={"danger"}
             title="Require Payment"
@@ -28,7 +28,7 @@ function App() {
           />
         ) : (
           <></>
-        )}
+        )} */}
 
         {error && (
           <Alert

@@ -20,31 +20,31 @@ function MenuList() {
       to: `/profile/${userId}/products`,
       icon: "fa-solid fa-basket-shopping",
     },
-
-    // {
-    //   title: "Booking",
-    //   to: `/profile/${userId}/booking`,
-    //   icon: "fa-solid fa-calendar-check",
-    // },
-    // {
-    //   title: "Location",
-    //   to: `/profile/${userId}/location`,
-    //   icon: "fa-solid fa-location-dot",
-    // },
+    {
+      title: "Booking",
+      to: `/profile/${userId}/booking`,
+      icon: "fa-solid fa-calendar-check",
+    },
+    {
+      title: "Location",
+      to: `/profile/${userId}/location`,
+      icon: "fa-solid fa-location-dot",
+    },
   ];
 
   return (
     <div className="middle flex justify-start">
-      {menuTattooist.map((el) => (
-        <MenuItem
-          key={el.title}
-          title={el.title}
-          to={el.to}
-          icon={el.icon}
-          active={pathname === el.to}
-          isUser={el.isUser}
-        />
-      ))}
+      {user?.role !== "CLIENT" &&
+        menuTattooist.map((el) => (
+          <MenuItem
+            key={el.title}
+            title={el.title}
+            to={el.to}
+            icon={el.icon}
+            active={pathname === el.to}
+            isUser={el.isUser}
+          />
+        ))}
 
       {isUser && (
         <MenuItem
